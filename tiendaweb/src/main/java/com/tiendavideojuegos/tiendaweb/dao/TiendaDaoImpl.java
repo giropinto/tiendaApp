@@ -10,7 +10,9 @@ import java.util.List;
 import com.tiendavideojuegos.tiendaweb.dto.TiendaDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TiendaDaoImpl implements CrudDaoInterface<TiendaDto> {
 
     @Autowired
@@ -24,6 +26,9 @@ public class TiendaDaoImpl implements CrudDaoInterface<TiendaDto> {
           ResultSet rs = sentencia.executeQuery(sql);
           while(rs.next()){
               TiendaDto tiendaDto = new TiendaDto();
+              tiendaDto.setTiendaCodigo(rs.getString("idtienda"));
+              tiendaDto.setTiendaNombre(rs.getNString("nombretienda"));
+              dtoList.add(tiendaDto);
           }
       }catch (SQLException throwables){
           throwables.printStackTrace();
