@@ -7,7 +7,7 @@ import com.tiendavideojuegos.tiendaweb.dto.TiendaDto;
 public class TiendaDaoImpl implements CrudDaoInterface<TiendaDto> {
 
     public List<TiendaDto> getAll() {
-      
+      //hola master
         return null;
     }
 
