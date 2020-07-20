@@ -36,7 +36,6 @@ public class TiendaDaoImpl implements CrudDaoInterface<TiendaDto> {
         return dtoList;
     }
 
-
     public List<TiendaDto> getbyId(float num) {
         return null;
     }
