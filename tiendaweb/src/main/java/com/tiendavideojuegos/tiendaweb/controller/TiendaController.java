@@ -1,0 +1,27 @@
+package com.tiendavideojuegos.tiendaweb.controller;
+
+import java.util.List;
+
+import com.tiendavideojuegos.tiendaweb.dto.RelacionTv;
+import com.tiendavideojuegos.tiendaweb.service.RelacionTvService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@CrossOrigin(origins = "http://localhost:4200" )
+@RestController
+@RequestMapping("/tienda")
+public class TiendaController {
+    @Autowired
+    private RelacionTvService relacionTvService;
+
+    //@PostMapping(value = "/getRelacionTv",consumes = "application/json;charset=utf-8")
+    @GetMapping
+    public List<RelacionTv> getAll(){
+      return relacionTvService.getAll(); 
+    }  
+
+}
