@@ -3,8 +3,6 @@ import lombok.Data;
 
 @Data
 public class VideojuegoDto {
-    
     String Titulo;
     String IDvideojuego;
-
 }
