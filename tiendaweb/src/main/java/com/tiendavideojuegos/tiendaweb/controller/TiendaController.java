@@ -19,9 +19,14 @@ public class TiendaController {
     private RelacionTvService relacionTvService;
     //Cambiemoslo a post
     //@PostMapping(value = "/getRelacionTv",consumes = "application/json;charset=utf-8")
-    @GetMapping
+    @GetMapping("/getAll")
     public List<RelacionTv> getAll(){
       return relacionTvService.getAll(); 
     }  
+    @GetMapping("/getById")
+    public List<RelacionTv> getById(String id){
+      id = "2";
+      return relacionTvService.getById(id);
+    }
 
 }

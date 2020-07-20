@@ -15,9 +15,11 @@ public class RelacionTvService {
     private RelacionTvDaoImpl relacionTvdDaoImpl;
 
     public List<RelacionTv> getAll() {
-        
 
       return relacionTvdDaoImpl.getAll();
         
+    }
+    public List<RelacionTv> getById(String id){
+      return relacionTvdDaoImpl.getbyId(id);
     }
 }
