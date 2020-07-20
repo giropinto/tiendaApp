@@ -20,7 +20,6 @@ public class RelacionTvDaoImpl implements CrudDaoInterface<RelacionTv> {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    
     public List<RelacionTv> getAll() {
         String sql = "SELECT idtienda, idvideojuego, urltv, precioNormal, precioOferta, DiaFinOferta FROM relaciontv";
         List<RelacionTv> lista = new ArrayList<RelacionTv>();
