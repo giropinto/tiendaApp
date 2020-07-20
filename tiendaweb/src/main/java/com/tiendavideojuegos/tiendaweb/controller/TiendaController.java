@@ -8,6 +8,7 @@ import com.tiendavideojuegos.tiendaweb.service.RelacionTvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,12 @@ public class TiendaController {
     //Cambiemoslo a post
     //@PostMapping(value = "/getRelacionTv",consumes = "application/json;charset=utf-8")
     @GetMapping("/getAll")
-    public List<RelacionTv> getAll() { return relacionTvService.getAll(); }
-    @GetMapping("/getbyId")
-    public List<RelacionTv> getbyId(){ return relacionTvService.getbyId("2");}
+    public List<RelacionTv> getAll(){
+      return relacionTvService.getAll(); 
+    }  
+    @GetMapping("/getById/{id}")
+    public List<RelacionTv> getById(@PathVariable("id") String id){
+      return relacionTvService.getById(id);
+    }
+
 }

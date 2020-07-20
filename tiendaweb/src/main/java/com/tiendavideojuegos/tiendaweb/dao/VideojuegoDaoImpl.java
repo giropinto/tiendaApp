@@ -1,6 +1,4 @@
 package com.tiendavideojuegos.tiendaweb.dao;
-
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +14,6 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
     public List<VideojuegoDto> getAll() {
 
         String sql = "SELECT titulo,idvideojuego,urlimg FROM videojuegos";

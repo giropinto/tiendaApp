@@ -13,7 +13,13 @@ import org.springframework.stereotype.Service;
 public class RelacionTvService {
     @Autowired
     private RelacionTvDaoImpl relacionTvdDaoImpl;
+    public List<RelacionTv> getAll() {
 
-    public List<RelacionTv> getAll() { return relacionTvdDaoImpl.getAll(); }
-    public List<RelacionTv> getbyId(String id) { return relacionTvdDaoImpl.getbyId(id); }
+      return relacionTvdDaoImpl.getAll();
+        
+    }
+    public List<RelacionTv> getById(String id){
+      return relacionTvdDaoImpl.getbyId(id);
+    }
+
 }
