@@ -14,10 +14,6 @@ public class RelacionTvService {
     @Autowired
     private RelacionTvDaoImpl relacionTvdDaoImpl;
 
-    public List<RelacionTv> getAll() {
-        
-
-      return relacionTvdDaoImpl.getAll();
-        
-    }
+    public List<RelacionTv> getAll() { return relacionTvdDaoImpl.getAll(); }
+    public List<RelacionTv> getbyId(String id) { return relacionTvdDaoImpl.getbyId(id); }
 }
