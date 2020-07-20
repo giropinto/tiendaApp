@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TiendaController {
     @Autowired
     private RelacionTvService relacionTvService;
-
+    //Cambiemoslo a post
     //@PostMapping(value = "/getRelacionTv",consumes = "application/json;charset=utf-8")
     @GetMapping
     public List<RelacionTv> getAll(){

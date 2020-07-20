@@ -40,7 +40,7 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
         return lista;
     }
 
-    public List<VideojuegoDto> getbyId(float num) {
+    public List<VideojuegoDto> getbyId(int num) {
        
         return null;
     }
