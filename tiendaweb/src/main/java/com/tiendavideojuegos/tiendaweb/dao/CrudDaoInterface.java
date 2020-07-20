@@ -1,4 +1,4 @@
-package com.tiendavideojuegos.tiendaweb.dao;
+mpackage com.tiendavideojuegos.tiendaweb.dao;
 
 import java.util.List;
 
