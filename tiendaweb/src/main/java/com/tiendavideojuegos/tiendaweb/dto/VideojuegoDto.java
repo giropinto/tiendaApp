@@ -6,5 +6,5 @@ public class VideojuegoDto {
     
     String Titulo;
     String IDvideojuego;
-
+	String Urlimg;
 }
