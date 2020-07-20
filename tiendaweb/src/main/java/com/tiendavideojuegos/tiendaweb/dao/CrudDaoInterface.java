@@ -7,7 +7,7 @@ import java.util.List;
 public interface CrudDaoInterface<T> {
     
     public abstract List<T> getAll();
-    public abstract List<T> getbyId(int num);
+    public abstract List<T> getbyId(String id);
     
     
 }

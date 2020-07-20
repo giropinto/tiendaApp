@@ -1,10 +1,6 @@
 package com.tiendavideojuegos.tiendaweb.dao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,20 +43,18 @@ public class RelacionTvDaoImpl implements CrudDaoInterface<RelacionTv> {
         return lista;
     }
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate1;
-    public List<RelacionTv> getbyId(int num) {
+    public List<RelacionTv> getbyId(String id) {
         String sql = "SELECT idtienda, idvideojuego, urltv, precioNormal, precioOferta, DiaFinOferta " +
-                "FROM relaciontv WHERE idvideojuego = ?";
+                "FROM relaciontv WHERE idvideojuego = "+id;
         List<RelacionTv> lista = new ArrayList<RelacionTv>();
         try{
-            Connection cn = jdbcTemplate1.getDataSource().getConnection();
+            Connection cn = jdbcTemplate.getDataSource().getConnection();
             Statement sentencia = cn.createStatement();
             ResultSet resultado = sentencia.executeQuery(sql);
             while(resultado.next()){
                 RelacionTv relacionTv= new RelacionTv();
                 relacionTv.setIDTienda(resultado.getString("idtienda"));
-                relacionTv.setIDvideojuego(resultado.getString(num));
+                relacionTv.setIDvideojuego(resultado.getString("idvideojuego"));
                 relacionTv.setUrlTV(resultado.getString("urltv"));
                 Date dateObj = resultado.getDate("DiaFinOferta");
                 //Converting the Date object to String format
