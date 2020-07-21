@@ -2,8 +2,11 @@ package com.tiendavideojuegos.tiendaweb.controller;
 
 import java.util.List;
 
+import com.tiendavideojuegos.tiendaweb.dao.VideojuegoDaoImpl;
 import com.tiendavideojuegos.tiendaweb.dto.RelacionTv;
+import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 import com.tiendavideojuegos.tiendaweb.service.RelacionTvService;
+import com.tiendavideojuegos.tiendaweb.service.VideojuegoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TiendaController {
     @Autowired
     private RelacionTvService relacionTvService;
+    @Autowired
+    private VideojuegoService videojuegoService;
     //Cambiemoslo a post
     //@PostMapping(value = "/getRelacionTv",consumes = "application/json;charset=utf-8")
     @GetMapping("/getAll")
-    public List<RelacionTv> getAll(){
-      return relacionTvService.getAll(); 
+    public List<VideojuegoDto> getAll(){
+      return videojuegoService.getAll(); 
     }  
     @GetMapping("/getById/{id}")
     public List<RelacionTv> getById(@PathVariable("id") String id){
