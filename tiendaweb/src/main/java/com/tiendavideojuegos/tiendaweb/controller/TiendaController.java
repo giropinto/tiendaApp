@@ -26,7 +26,7 @@ public class TiendaController {
     private VideojuegoService videojuegoService;
     @Autowired
     private TiendaService tiendaService;
-
+    //Version actual
     //Cambiemoslo a post
     //@PostMapping(value = "/getRelacionTv",consumes = "application/json;charset=utf-8")
     @GetMapping("/getAll")
