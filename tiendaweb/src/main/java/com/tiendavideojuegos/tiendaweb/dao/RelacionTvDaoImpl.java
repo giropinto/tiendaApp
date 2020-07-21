@@ -1,10 +1,6 @@
 package com.tiendavideojuegos.tiendaweb.dao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +15,7 @@ public class RelacionTvDaoImpl implements CrudDaoInterface<RelacionTv> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
 
     public List<RelacionTv> getAll() {
         final String sql = "SELECT idtienda, idvideojuego, urltv, precioNormal, precioOferta, DiaFinOferta FROM relaciontv";
@@ -46,9 +43,7 @@ public class RelacionTvDaoImpl implements CrudDaoInterface<RelacionTv> {
         }
         return lista;
     }
-    
 
-    
     public List<RelacionTv> getbyId(final String id) {
 
         final String sql = "SELECT idtienda, idvideojuego, urltv, precioNormal, precioOferta, DiaFinOferta " +
@@ -77,6 +72,7 @@ public class RelacionTvDaoImpl implements CrudDaoInterface<RelacionTv> {
         }
         return lista;
     }
-    
+
+    public List<RelacionTv> getbyName(String name){return null;}
     
 }

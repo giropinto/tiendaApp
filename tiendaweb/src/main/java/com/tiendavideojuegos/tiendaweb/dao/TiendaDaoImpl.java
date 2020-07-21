@@ -37,7 +37,23 @@ public class TiendaDaoImpl implements CrudDaoInterface<TiendaDto> {
     }
 
     public List<TiendaDto> getbyId(String id) {
-        return null;
+        List<TiendaDto> dtoList = new ArrayList<>();
+        String sql = "SELECT nombretienda, idtienda FROM tienda where nombretienda = " + id;
+        try{
+            Connection cn = jdbcTemplate.getDataSource().getConnection();
+            Statement sentencia = cn.createStatement();
+            ResultSet rs = sentencia.executeQuery(sql);
+            while(rs.next()){
+                TiendaDto tiendaDto = new TiendaDto();
+                tiendaDto.setTiendaCodigo(rs.getString("idtienda"));
+                tiendaDto.setTiendaNombre(rs.getNString("nombretienda"));
+                dtoList.add(tiendaDto);
+            }
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return dtoList;
     }
+
     
 }

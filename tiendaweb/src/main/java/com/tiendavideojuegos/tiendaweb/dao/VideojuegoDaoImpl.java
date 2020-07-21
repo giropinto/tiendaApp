@@ -1,5 +1,4 @@
 package com.tiendavideojuegos.tiendaweb.dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +17,7 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
     private JdbcTemplate jdbcTemplate;
     public List<VideojuegoDto> getAll() {
 
-        String sql = "SELECT titulo,idvideojuego,urlimg FROM videojuegos";
+        String sql = "SELECT titulo,idvideojuego,genero,urlimg FROM videojuegos";
         List<VideojuegoDto> lista = new ArrayList<VideojuegoDto>();
         try{
             Connection cn = jdbcTemplate.getDataSource().getConnection();
@@ -28,6 +27,7 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
                 VideojuegoDto videojuego= new VideojuegoDto();
                 videojuego.setTitulo(resultado.getString("titulo"));
                 videojuego.setIDvideojuego(resultado.getString("idvideojuego"));
+                videojuego.setGenero(resultado.getString("genero"));
                 videojuego.setUrlimg(resultado.getString("urlimg"));
                 lista.add(videojuego);
             }
@@ -39,8 +39,25 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
     }
 
     public List<VideojuegoDto> getbyId(String id) {
-       
-        return null;
+        String sql = "SELECT titulo,idvideojuego,genero,urlimg FROM videojuegos where idvideojuego=" +id;
+        List<VideojuegoDto> lista = new ArrayList<VideojuegoDto>();
+        try{
+            Connection cn = jdbcTemplate.getDataSource().getConnection();
+            Statement sentencia = cn.createStatement();
+            ResultSet resultado = sentencia.executeQuery(sql);
+            while(resultado.next()){
+                VideojuegoDto videojuego= new VideojuegoDto();
+                videojuego.setTitulo(resultado.getString("titulo"));
+                videojuego.setIDvideojuego(resultado.getString("idvideojuego"));
+                videojuego.setGenero(resultado.getString("genero"));
+                videojuego.setUrlimg(resultado.getString("urlimg"));
+                lista.add(videojuego);
+            }
+
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return lista;
     }
     
 }
