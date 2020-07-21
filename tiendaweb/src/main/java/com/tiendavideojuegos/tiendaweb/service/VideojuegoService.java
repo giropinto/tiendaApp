@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class VideojuegoDaoService {
+public class VideojuegoService {
     @Autowired
     private VideojuegoDaoImpl videojuegoDao;
     public List<VideojuegoDto> getAll(){

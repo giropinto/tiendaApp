@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TiendaDaoService {
+public class TiendaService {
     @Autowired
     private TiendaDaoImpl tiendaDao;
     public List<TiendaDto> getAll() {

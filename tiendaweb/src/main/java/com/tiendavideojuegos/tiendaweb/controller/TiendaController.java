@@ -6,9 +6,9 @@ import com.tiendavideojuegos.tiendaweb.dto.RelacionTv;
 import com.tiendavideojuegos.tiendaweb.dto.TiendaDto;
 import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 import com.tiendavideojuegos.tiendaweb.service.RelacionTvService;
+import com.tiendavideojuegos.tiendaweb.service.TiendaService;
+import com.tiendavideojuegos.tiendaweb.service.VideojuegoService;
 
-import com.tiendavideojuegos.tiendaweb.service.TiendaDaoService;
-import com.tiendavideojuegos.tiendaweb.service.VideojuegoDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,17 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class TiendaController {
     @Autowired
     private RelacionTvService relacionTvService;
-
     @Autowired
-    private TiendaDaoService tiendaDaoService;
-
+    private VideojuegoService videojuegoService;
     @Autowired
-    private VideojuegoDaoService videojuegoDaoService;
+    private TiendaService tiendaService;
+
     //Cambiemoslo a post
     //@PostMapping(value = "/getRelacionTv",consumes = "application/json;charset=utf-8")
     @GetMapping("/getAll")
-    public List<RelacionTv> getAll(){
-      return relacionTvService.getAll(); 
+    public List<VideojuegoDto> getAll(){
+      return videojuegoService.getAll();
     }  
     @GetMapping("/getById/{id}")
     public List<RelacionTv> getById(@PathVariable("id") String id){
@@ -40,19 +39,19 @@ public class TiendaController {
     }
     @GetMapping("/getdaoAll")
     public List<TiendaDto> getdaoAll(){
-        return tiendaDaoService.getAll();
+        return tiendaService.getAll();
     }
     @GetMapping("/getdaoById/{id}")
     public List<TiendaDto> getdaoById(@PathVariable("id") String id){
-        return tiendaDaoService.getById(id);
+        return tiendaService.getById(id);
     }
     @GetMapping("/getvideojuegoAll")
     public List<VideojuegoDto> getvideoAll(){
-        return videojuegoDaoService.getAll();
+        return videojuegoService.getAll();
     }
     @GetMapping("/getvideojuegoById/{id}")
     public List<VideojuegoDto> getvideojuegoById(@PathVariable("id") String id){
-        return videojuegoDaoService.getById(id);
+        return videojuegoService.getById(id);
     }
 
 }
