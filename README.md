@@ -1,2 +1,0 @@
-# tiendaApp
-Tienda Proyecto
