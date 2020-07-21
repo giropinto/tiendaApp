@@ -72,6 +72,7 @@ public class RelacionTvDaoImpl implements CrudDaoInterface<RelacionTv> {
         }
         return lista;
     }
-    
+
+    public List<RelacionTv> getbyName(String name){return null;}
     
 }

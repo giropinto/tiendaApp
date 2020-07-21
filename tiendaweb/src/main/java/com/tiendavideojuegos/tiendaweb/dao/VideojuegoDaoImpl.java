@@ -18,7 +18,7 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
     private JdbcTemplate jdbcTemplate;
     public List<VideojuegoDto> getAll() {
 
-        String sql = "SELECT titulo,idvideojuego,urlimg FROM videojuegos";
+        String sql = "SELECT titulo,idvideojuego,genero,urlimg FROM videojuegos";
         List<VideojuegoDto> lista = new ArrayList<VideojuegoDto>();
         try{
             Connection cn = jdbcTemplate.getDataSource().getConnection();
@@ -28,6 +28,7 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
                 VideojuegoDto videojuego= new VideojuegoDto();
                 videojuego.setTitulo(resultado.getString("titulo"));
                 videojuego.setIDvideojuego(resultado.getString("idvideojuego"));
+                videojuego.setGenero(resultado.getString("genero"));
                 videojuego.setUrlimg(resultado.getString("urlimg"));
                 lista.add(videojuego);
             }
@@ -39,7 +40,7 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
     }
 
     public List<VideojuegoDto> getbyId(String id) {
-        String sql = "SELECT titulo,idvideojuego,urlimg FROM videojuegos where idvideojuego=" +id;
+        String sql = "SELECT titulo,idvideojuego,genero,urlimg FROM videojuegos where idvideojuego=" +id;
         List<VideojuegoDto> lista = new ArrayList<VideojuegoDto>();
         try{
             Connection cn = jdbcTemplate.getDataSource().getConnection();
@@ -49,6 +50,7 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
                 VideojuegoDto videojuego= new VideojuegoDto();
                 videojuego.setTitulo(resultado.getString("titulo"));
                 videojuego.setIDvideojuego(resultado.getString("idvideojuego"));
+                videojuego.setGenero(resultado.getString("genero"));
                 videojuego.setUrlimg(resultado.getString("urlimg"));
                 lista.add(videojuego);
             }
