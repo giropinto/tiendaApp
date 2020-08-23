@@ -1,0 +1,65 @@
+.searchbartext{
+  background-color: violet;
+  font-size: 24px;
+  width: 50vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  display: flex;
+  border-radius: 10px;
+}
+.example-form {
+  max-width: 60%;
+  width: 100%;
+}
+.example-full-width {
+  width: 100%;
+}
+.lupa{
+  height: 40px;
+  width: 40px;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-top: 3vh;
+  margin-bottom: 2vh;
+}
+.searchbarlist{
+  margin-top: 2vh;
+  height: 100%;
+  max-height: 100%;
+}
+.activado{
+  background-color: #D761CE;
+}
+.card{
+  border-radius: 1.5rem;
+}
+.card-header > h3{
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  margin: auto;
+  font-family: Rockwell;
+}
+.card-body{
+  font-size: 16px;
+}
+.buttonsize > .btn-group,.btn-lg{
+  height: 80px;
+  background: #141414;
+  margin-bottom: 2vh;
+  margin-left: 1vh;
+}
+.btn-group{
+  padding: 0px;
+  padding-top: 0px;
+}
+.container{
+  margin-top: 3vh;
+}
+.tables{
+  margin: auto;
+  display: flex;
+}
+

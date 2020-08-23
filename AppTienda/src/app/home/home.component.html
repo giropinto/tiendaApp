@@ -1,0 +1,53 @@
+
+<div class = "tables">
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h3>Recommended Games</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead>
+          <tr class="text-center">
+            <th>Name</th>
+            <th>Imagen</th>
+            <th>Codigo</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor = "let r of filteredOptions | async" class="text-center">
+            <td>{{r.titulo}}</td>
+            <td>{{r.urlimg}}</td>
+            <td>{{r.idvideojuego}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h3>Recommended Software</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead>
+          <tr class="text-center">
+            <th>Name</th>
+            <th>Imagen</th>
+            <th>Codigo</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor = "let r of filteredOptions | async" class="text-center">
+            <td>{{r.titulo}}</td>
+            <td>{{r.urlimg}}</td>
+            <td>{{r.idvideojuego}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
