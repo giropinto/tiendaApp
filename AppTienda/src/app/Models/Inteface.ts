@@ -1,10 +1,12 @@
-export interface SuscriptorRequest{
-  dni: string;
+export interface UsuarioRequest{
+  username: string;
+  contrasenia: string;
   nombres: string;
   apellidos: string;
 }
-export interface SuscriptorResponse{
-  dni: string;
+export interface UsuarioResponse{
+  username: string;
+  contrasenia: string;
   nombres: string;
   apellidos: string;
 }

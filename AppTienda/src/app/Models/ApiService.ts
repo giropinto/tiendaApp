@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {SuscriptorRequest, SuscriptorResponse} from './Inteface';
+import {UsuarioRequest, UsuarioResponse} from './Inteface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +24,8 @@ export class ApiService {
     return throwError(errorMessage);
   }
   constructor(private http: HttpClient) { }
-  obtenerSuscriptor(data: SuscriptorRequest): Observable<SuscriptorResponse> {
-    return this.http.post<SuscriptorResponse>( 'http://localhost:8080/suscriptorPlanes', data, this.httpOptions)
+  obtenerSuscriptor(data: UsuarioRequest): Observable<UsuarioResponse> {
+    return this.http.post<UsuarioResponse>( 'http://localhost:8080/loginuser', data, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)

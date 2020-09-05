@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../Models/ApiService';
-import {SuscriptorRequest} from '../Models/Inteface';
+import {UsuarioResponse, UsuarioRequest} from '../Models/Inteface';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,16 +11,30 @@ import {SuscriptorRequest} from '../Models/Inteface';
 export class NavbarComponent implements OnInit {
   usuario: string;
   password: string;
-  pintar(): void{
-      alert(this.usuario);
-      alert(this.password);
-      const peticion: SuscriptorRequest = {
-        dni: this.usuario,
+  loginsuccess: boolean;
+  ingresar(): void{
+      const client: UsuarioRequest = {
+        username: this.usuario,
+        contrasenia: this.password,
         nombres: null,
         apellidos: null
       };
+      this.api.obtenerSuscriptor(client).subscribe( data => {
+        if (this.usuario === data.username && this.password === data.contrasenia){
+          alert('Login completed!');
+          this.route.navigate(['/about']);
+          // tslint:disable-next-line:only-arrow-functions
+          $(document).ready(function(){
+            $('#myModal').modal('hide');
+          });
+        }
+        else{
+          this.loginsuccess = false;
+          setTimeout(() => {this.loginsuccess = true; }, 2000);
+       }
+    });
   }
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private route: Router) { }
 
   ngOnInit(): void {
   }
