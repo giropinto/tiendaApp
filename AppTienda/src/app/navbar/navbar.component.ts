@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../Models/ApiService';
 import {UsuarioResponse, UsuarioRequest} from '../Models/Inteface';
 import {Router} from '@angular/router';
-
+declare var $: any;
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   usuario: string;
   password: string;
   loginsuccess: boolean;
+  $: any;
   ingresar(): void{
       const client: UsuarioRequest = {
         username: this.usuario,

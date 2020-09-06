@@ -10,7 +10,6 @@ import com.tiendavideojuegos.tiendaweb.service.TiendaService;
 import com.tiendavideojuegos.tiendaweb.service.VideojuegoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +24,7 @@ public class TiendaController {
     private VideojuegoService videojuegoService;
     @Autowired
     private TiendaService tiendaService;
-    //Version actual
-    //Cambiemoslo a post
-    //@PostMapping(value = "/getRelacionTv",consumes = "application/json;charset=utf-8")
+   
     @GetMapping("/getAll")
     public List<VideojuegoDto> getAll(){
       return videojuegoService.getAll();

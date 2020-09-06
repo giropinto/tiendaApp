@@ -1,6 +1,5 @@
 package com.tiendavideojuegos.tiendaweb.service;
 
-import com.tiendavideojuegos.tiendaweb.dao.CrudDaoInterface;
 import com.tiendavideojuegos.tiendaweb.dao.UsuarioDaoImpl;
 import com.tiendavideojuegos.tiendaweb.dto.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
