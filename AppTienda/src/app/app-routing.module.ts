@@ -12,16 +12,16 @@ import {SoftwareComponent} from './software/software.component';
 
 
 const routes: Routes = [
-  {path:'home', component:HomeComponent},
-  {path:'navbar', component:NavbarComponent},
-  {path: 'about', component:AboutComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'navbar', component: NavbarComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'software', component: SoftwareComponent},
-  {path:'producto', component:ProductoComponent ,children:[
-    {path: 'genero/:genero', component:PorGeneroComponent},
-    {path: 'consola/:consola',component:PorConsolaComponent}
+  {path: 'producto', component: ProductoComponent , children:[
+    {path: 'genero/:genero', component: PorGeneroComponent},
+    {path: 'consola/:consola', component: PorConsolaComponent}
   ]},
 
-  {path:'atencion', component:AtencionComponent},
+  {path: 'atencion', component: AtencionComponent},
 ];
 
 @NgModule({
