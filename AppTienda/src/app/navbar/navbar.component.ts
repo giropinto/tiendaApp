@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../Models/ApiService';
 import {UsuarioResponse, UsuarioRequest} from '../Models/Inteface';
 import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
+import { AuthResponseData, AuthServiceService} from "../Services/auth-service.service"
+import { Observable } from 'rxjs';
 declare var $: any;
 @Component({
   selector: 'app-navbar',
@@ -9,33 +12,46 @@ declare var $: any;
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  usuario: string;
-  password: string;
-  loginsuccess: boolean;
   $: any;
-  ingresar(): void{
-      const client: UsuarioRequest = {
-        username: this.usuario,
-        contrasenia: this.password,
-        nombres: null,
-        apellidos: null
-      };
-      this.api.obtenerSuscriptor(client).subscribe( data => {
-        if (this.usuario === data.username && this.password === data.contrasenia){
-          alert('Login completed!');
-          this.route.navigate(['/about']);
-          // tslint:disable-next-line:only-arrow-functions
-          $(document).ready(function(){
-            $('#myModal').modal('hide');
-          });
-        }
-        else{
-          this.loginsuccess = false;
-          setTimeout(() => {this.loginsuccess = true; }, 2000);
-       }
-    });
+  isLoginMode = true;
+  error: string = null;
+  SwitchMode(){
+    this.isLoginMode = false;
   }
-  constructor(private api: ApiService, private route: Router) { }
+ 
+  onSubmit(form: NgForm){
+    if(!form.valid){
+      return;
+    }
+    const email = form.value.email;
+    const password = form.value.password;
+    let authObs: Observable<AuthResponseData>
+    
+    if(this.isLoginMode){
+      authObs= this.authService.login(email,password);
+    }else{
+      authObs = this.authService.signup(email,password);
+    }
+    authObs.subscribe(
+      resData => {
+        console.log(resData);
+        this.isLoginMode = false;
+        this.route.navigate(['/home']);
+        $(document).ready(function(){
+          $("#myModal").modal("hide");
+        });
+      },
+      errorMessage =>{
+        console.log(errorMessage);
+        this.error = errorMessage;
+      }
+    );
+    form.reset();
+
+  }
+ 
+ 
+  constructor(private authService: AuthServiceService, private route: Router) { }
 
   ngOnInit(): void {
   }

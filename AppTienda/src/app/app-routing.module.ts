@@ -4,24 +4,23 @@ import { HomeComponent } from './home/home.component';
 import { ProductoComponent } from './producto/producto.component';
 import { AtencionComponent } from './atencion/atencion.component';
 
-import { PorGeneroComponent } from './producto/por-genero/por-genero.component';
-import { PorConsolaComponent } from './producto/por-consola/por-consola.component';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import {AboutComponent} from './about/about.component';
 import {SoftwareComponent} from './software/software.component';
+import { AuthGuardService } from './Services/auth-guard.service';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {path:'home', component:HomeComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path:'about',component:AboutComponent},  
+  {path:'home', component:HomeComponent, canActivate:[AuthGuardService]},
   {path:'navbar', component:NavbarComponent},
-  {path: 'about', component:AboutComponent},
-  {path: 'software', component: SoftwareComponent},
-  {path:'producto', component:ProductoComponent ,children:[
-    {path: 'genero/:genero', component:PorGeneroComponent},
-    {path: 'consola/:consola',component:PorConsolaComponent}
-  ]},
-
+  {path: 'software', component: SoftwareComponent,canActivate:[AuthGuardService]},
+  {path:'producto', component:ProductoComponent },
   {path:'atencion', component:AtencionComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
