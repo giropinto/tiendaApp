@@ -37,16 +37,23 @@
     </div>
   </div>
   <img style="float: right;" class="ownlogo" src="assets/a2b.png">
-  <div class="position" style = "float: right">
+  <div *ngIf="!isAuthenticated" class="position" style = "float: right">
     <a href="#myModal" class="trigger-btn" data-toggle="modal">LOGIN</a>
+  </div>
+  <div *ngIf="isAuthenticated">
+    <a style="cursor: pointer; float: right;" class="position" (click)="onLogout()">Logout</a>
   </div>
 </div>
 <div id="myModal" class="modal fade">
   <div class="modal-dialog modal-login">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Sign In</h4>
+        <h4 *ngIf="isLoginMode" class="modal-title">Sign In</h4>
+        <h4 *ngIf="!isLoginMode" class="modal-title">Sign Up</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="alert alert-danger" *ngIf="error">
+        <p>{{ error }}</p>
       </div>
       <div class="modal-body">
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" method="post">
@@ -63,12 +70,14 @@
             </div>
           </div>
           <div class="form-group">
-            <button [disabled]="!authForm.valid" type="submit" class="btn btn-primary btn-block btn-lg">Sign In</button>
+            <button [disabled]="!authForm.valid" type="submit" class="btn btn-primary btn-block btn-lg">{{LoginMode}}</button>
           </div>
-          <p class="hint-text"><a>Forgot Password?</a></p>
+          <p *ngIf="isLoginMode" class="hint-text"><a>Forgot Password?</a></p>
         </form>
       </div>
-      <div class="modal-footer">Don't have an account? <a>Sign up</a></div>
+      <div class="modal-footer ">{{LoginStringMode}} 
+        <a (click)="SwitchMode()">{{LoginMode}}</a>
+      </div>
     </div>
   </div>
 </div>

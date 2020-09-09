@@ -27,7 +27,7 @@ export class AuthGuardService {
         if (isAuth) {
           return true;
         }
-        return this.router.createUrlTree(['/login']);
+        return this.router.createUrlTree(['/about']);
       })
     );
   }

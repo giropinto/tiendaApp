@@ -8,14 +8,16 @@ import { HomeComponent } from './home/home.component';
 import { ProductoComponent } from './producto/producto.component';
 import { AtencionComponent } from './atencion/atencion.component';
 import { HttpServiceService } from './Services/http-service.service';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module'
 import  {ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { SoftwareComponent } from './software/software.component';
-import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthInterceptorService } from './Services/auth-interceptor.service';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,8 @@ import { LoginComponent } from './login/login.component';
     NavbarComponent,
     AboutComponent,
     SoftwareComponent,
-    LoginComponent
+    PageNotFoundComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     CommonModule
 
   ],
-  providers: [HttpServiceService],
+  providers: [HttpServiceService,
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

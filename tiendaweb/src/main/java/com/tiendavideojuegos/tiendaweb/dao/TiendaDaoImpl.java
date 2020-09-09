@@ -29,6 +29,7 @@ public class TiendaDaoImpl implements CrudDaoInterface<TiendaDto> {
                 tiendaDto.setTiendaNombre(rs.getNString("nombretienda"));
                 dtoList.add(tiendaDto);
             }
+            cn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

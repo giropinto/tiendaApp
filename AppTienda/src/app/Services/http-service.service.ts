@@ -26,8 +26,8 @@ export class HttpServiceService {
     this.Url = 'http://localhost:8080/tienda/getAll';
     return this.http.get<Videojuego[]>(this.Url);
   }
-  VideojuegogetById(id:string): Observable<Videojuego[]>{
+  VideojuegogetById(id:string): Observable<RelacionTv[]>{
     this.Url = 'http://localhost:8080/tienda/getById/'+id;
-    return this.http.get<Videojuego[]>(this.Url);
+    return this.http.get<RelacionTv[]>(this.Url);
   }
 }

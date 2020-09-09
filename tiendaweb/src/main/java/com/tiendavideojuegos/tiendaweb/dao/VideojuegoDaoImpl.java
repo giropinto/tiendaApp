@@ -30,6 +30,7 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
                 lista.add(videojuego);
             }
 
+            cn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

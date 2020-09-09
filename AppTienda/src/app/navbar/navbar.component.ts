@@ -4,7 +4,7 @@ import {UsuarioResponse, UsuarioRequest} from '../Models/Inteface';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { AuthResponseData, AuthServiceService} from "../Services/auth-service.service"
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 declare var $: any;
 @Component({
   selector: 'app-navbar',
@@ -12,13 +12,34 @@ declare var $: any;
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  $: any;
-  isLoginMode = true;
-  error: string = null;
-  SwitchMode(){
-    this.isLoginMode = false;
+  
+  constructor(private authService: AuthServiceService, private route: Router) {
+   }
+
+  ngOnInit(): void {
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+      console.log(!user);
+      console.log(!!user);
+    });
   }
- 
+  
+  $: any;
+  LoginMode = "Sign In";
+  isAuthenticated = false;
+  isLoginMode = true;
+  LoginStringMode = "Don't have an account?";
+  error: string = null;
+  private userSub: Subscription;
+  SwitchMode(){
+    this.isLoginMode= !this.isLoginMode;
+    this.LoginStringMode = this.isLoginMode? "Don't have an account?":" Already have an account?";
+    this.LoginMode = this.isLoginMode? "Sign In":" Sign Up";
+  }
+  onLogout(){
+    this.authService.logout();
+    this.isLoginMode = true;
+  }
   onSubmit(form: NgForm){
     if(!form.valid){
       return;
@@ -35,7 +56,6 @@ export class NavbarComponent implements OnInit {
     authObs.subscribe(
       resData => {
         console.log(resData);
-        this.isLoginMode = false;
         this.route.navigate(['/home']);
         $(document).ready(function(){
           $("#myModal").modal("hide");
@@ -47,13 +67,12 @@ export class NavbarComponent implements OnInit {
       }
     );
     form.reset();
-
+    setTimeout(()=>{
+      this.error=null;
+    },2000);
   }
  
  
-  constructor(private authService: AuthServiceService, private route: Router) { }
-
-  ngOnInit(): void {
-  }
+  
 
 }
