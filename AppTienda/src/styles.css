@@ -3,7 +3,7 @@
 html, body { height: 100%;
     background-color: #bbbbbb;
     background-repeat: repeat;
-    cursor: url(https://image.myanimelist.net/ui/NMhxKjGdQ21NnPG4rzwnyx8EhWnSIepzY9DFUkCm5vwxI8JdyCZ6aas5N0fCtfDb), auto;
+    cursor: url("/assets/cursor.png"), auto;
 
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

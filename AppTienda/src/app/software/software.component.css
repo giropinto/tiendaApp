@@ -16,7 +16,6 @@
   background: -ms-linear-gradient(left, rgba(205,19,156,1) 0%, rgba(205,19,156,0.74) 74%, rgba(224,52,179,0.69) 88%, rgba(240,81,198,0.69) 100%);
   background: linear-gradient(to right, rgba(205,19,156,1) 0%, rgba(205,19,156,0.74) 74%, rgba(224,52,179,0.69) 88%, rgba(240,81,198,0.69) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cd139c', endColorstr='#f051c6', GradientType=1 );
-
 }
 .example-form {
   max-width: 60%;
@@ -43,6 +42,7 @@
 }
 .card{
   margin: 0px 0px 0px 0px;
+
 }
 .card-header > h3{
   font-weight: bold;
@@ -50,9 +50,12 @@
   font-size: 30px;
   margin: auto;
   font-family: Rockwell;
+
 }
 .card-body{
   font-size: 16px;
+  margin: 0px;
+  color: #f9f9f9;
 }
 .buttonsize > .btn-group,.btn-lg{
   height: 80px;
@@ -66,7 +69,39 @@
 }
 .container{
   margin-top: 3vh;
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
 }
-.text-center{
+.game-box{
+  margin: 3vh;
+  height: 30vh;
+  width: 40vh;
+  background-color: #999999;
+  box-shadow: 5px 5px 5px black;
+}
+.image-box{
+  padding: 2vh;
+  height: 60%;
+}
+.picture{
+  height: 100%;
+  width: 100%;
+}
+.description{
+  height: 40%;
+  padding: 0px;
+}
+.box-name{
+  height: 50%;
+  padding: 1vh;
+  text-align: left;
+}
+.box-price{
+  height: 50%;
+  padding: 1vh;
+  text-align: right;
+}
 
-}

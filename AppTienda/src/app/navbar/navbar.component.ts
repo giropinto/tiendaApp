@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../Models/ApiService';
 import {UsuarioResponse, UsuarioRequest} from '../Models/Inteface';
 import {Router} from '@angular/router';
-
+declare var $: any;
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

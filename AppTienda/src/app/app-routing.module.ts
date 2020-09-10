@@ -9,6 +9,7 @@ import { PorConsolaComponent } from './producto/por-consola/por-consola.componen
 import { NavbarComponent } from './navbar/navbar.component';
 import {AboutComponent} from './about/about.component';
 import {SoftwareComponent} from './software/software.component';
+import {ProductodetailsComponent} from './productodetails/productodetails.component';
 
 
 const routes: Routes = [
@@ -16,11 +17,8 @@ const routes: Routes = [
   {path: 'navbar', component: NavbarComponent},
   {path: 'about', component: AboutComponent},
   {path: 'software', component: SoftwareComponent},
-  {path: 'producto', component: ProductoComponent , children:[
-    {path: 'genero/:genero', component: PorGeneroComponent},
-    {path: 'consola/:consola', component: PorConsolaComponent}
-  ]},
-
+  {path: 'producto', component: ProductoComponent},
+  {path: 'details', component: ProductodetailsComponent},
   {path: 'atencion', component: AtencionComponent},
 ];
 

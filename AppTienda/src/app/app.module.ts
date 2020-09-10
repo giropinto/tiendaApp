@@ -17,6 +17,7 @@ import  {ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { SoftwareComponent } from './software/software.component';
+import { ProductodetailsComponent } from './productodetails/productodetails.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { SoftwareComponent } from './software/software.component';
     PorConsolaComponent,
     NavbarComponent,
     AboutComponent,
-    SoftwareComponent
+    SoftwareComponent,
+    ProductodetailsComponent
   ],
   imports: [
     BrowserModule,
