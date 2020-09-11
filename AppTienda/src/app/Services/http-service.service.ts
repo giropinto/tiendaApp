@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
-import {RelacionTv}  from '../Models/RelacionTv';
-import {Videojuego} from '../Models/Videojuego';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { FilterContent} from '../Models/Filter'
+import { Videojuego,VideojuegoLista} from '../Models/Videojuego';
 
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, retry, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,22 +12,28 @@ export class HttpServiceService {
   
   
   constructor(private http:HttpClient) { } 
-  Url:string;
- /*
   httpOptions = {
-    headers = new HttpHeaders({
-      'Content-type': 'application/json',
-      
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json;charset=utf-8'
     })
   };
-  */
-
-  VideojuegogetAll(): Observable<Videojuego[]>{
-    this.Url = 'http://localhost:8080/tienda/getAll';
-    return this.http.get<Videojuego[]>(this.Url);
+  errorHandl(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
-  VideojuegogetById(id:string): Observable<RelacionTv[]>{
-    this.Url = 'http://localhost:8080/tienda/getById/'+id;
-    return this.http.get<RelacionTv[]>(this.Url);
-  }
+  VideojuegogetFilter(data: FilterContent): Observable<VideojuegoLista>{
+    return this.http.post<VideojuegoLista>('http://localhost:8080/videojuegos', data, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  } 
+  
+ 
 }

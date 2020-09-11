@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Videojuego} from '../Models/Videojuego';
+import {Videojuego, VideojuegoLista} from '../Models/Videojuego';
 import {Observable} from 'rxjs';
 import {HttpServiceService} from '../Services/http-service.service';
 import {debounceTime, map, startWith} from 'rxjs/operators';
+import { FilterContent } from '../Models/Filter';
 
 @Component({
   selector: 'app-software',
@@ -12,15 +13,21 @@ import {debounceTime, map, startWith} from 'rxjs/operators';
 })
 export class SoftwareComponent implements OnInit {
   myControl = new FormControl();
-
+  videoLista: VideojuegoLista;
   videojuegos:Videojuego[];
   filteredOptions: Observable<Videojuego[]> = null;
-
+  filterContent: FilterContent;
 
   constructor(private httpService:HttpServiceService) {
-    this.httpService.VideojuegogetAll()
+    this.filterContent= {
+      genre: null,
+      language: null,
+      page: null,
+      searchAs: null
+    }
+    this.httpService.VideojuegogetFilter(this.filterContent)
       .subscribe(data=>{
-        {this.videojuegos=data; console.log(this.videojuegos)
+        {this.videojuegos=data.listaVideojuego
         }
       });
   }

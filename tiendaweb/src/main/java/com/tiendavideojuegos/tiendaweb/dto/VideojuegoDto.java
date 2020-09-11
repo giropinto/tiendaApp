@@ -3,8 +3,10 @@ import lombok.Data;
 
 @Data
 public class VideojuegoDto {
-    String Titulo;
-    String IDvideojuego;
-	String Urlimg;
-	String genero;
+    private String idvideojuego ;
+	private String titulo;
+	private Double precio ;
+	private String fecha_lanzamiento;
+    private String desarrolladora ;
+    private String urlimg;
 }
