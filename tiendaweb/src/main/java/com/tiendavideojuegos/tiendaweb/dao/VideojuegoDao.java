@@ -9,5 +9,5 @@ import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 public interface VideojuegoDao {
     
     public abstract List<VideojuegoDto> FindWithFilter(FilterDto filterDto);
-
+    public abstract VideojuegoDto FindByName(VideojuegoDto videojuegoDto);
 }

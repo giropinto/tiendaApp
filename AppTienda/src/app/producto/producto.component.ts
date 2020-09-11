@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from '../Services/http-service.service';
-import { Observable  } from 'rxjs';
+import { generate, Observable  } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, startWith, debounceTime} from 'rxjs/operators';
 import { Videojuego, VideojuegoLista } from '../Models/Videojuego';
@@ -53,6 +53,35 @@ export class ProductoComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.videojuegos.filter((videojuego) => videojuego.titulo.toLowerCase().includes(filterValue));
+  }
+  FilterGenre(genre){
+    let genreid:String;
+    switch (genre) {
+      case "Accion":
+        genreid="200";
+        break;
+    
+      default:
+        break;
+    }
+    this.filtercontent.genre=genre;
+    this.httpService.VideojuegogetFilter(this.filtercontent)
+    .subscribe(data=>{
+      {this.videojuegos=data.listaVideojuego;
+       
+      }
+    });
+    this.myControl.reset();
+  }
+  FilterLanguage(language){
+    
+    this.filtercontent.language=language;
+    this.httpService.VideojuegogetFilter(this.filtercontent)
+    .subscribe(data=>{
+      {this.videojuegos=data.listaVideojuego;
+       console.log(this.videojuegos);
+      }
+    }); 
   }
  
 }

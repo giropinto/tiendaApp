@@ -70,4 +70,10 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
          return listaVideojuego;
      }
 
+     @Override
+     public VideojuegoDto FindByName(VideojuegoDto videojuegoDto) {
+         // TODO Auto-generated method stub
+         return null;
+     }
+
 }
