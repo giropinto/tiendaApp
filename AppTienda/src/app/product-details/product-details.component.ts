@@ -27,18 +27,10 @@ export class ProductDetailsComponent implements OnInit {
     const videojuego: Videojuego = {
       idvideojuego: null,
       titulo: null,
-	    precio: null,
-	    fecha_lanzamiento: null,
+        precio: null,
+        fecha_lanzamiento: null,
       desarrolladora: null,
       urlimg: null,
-<<<<<<< HEAD
-    }
-    videojuego.titulo=this.titulo;
-    this.http.VideojuegogetByName(videojuego).subscribe(data=>{
-      this.videojuego=data;
-      console.log(data);
-   });
-=======
     };
     const lgdto: LGDto = {
       lenguaje: null,
@@ -53,6 +45,6 @@ export class ProductDetailsComponent implements OnInit {
         console.log(this.lgdto);
       });
     });
->>>>>>> ce19b031f5265077237c6bb2880b6899fb852dd7
   }
 }
+

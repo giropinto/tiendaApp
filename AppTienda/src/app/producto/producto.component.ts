@@ -67,17 +67,8 @@ export class ProductoComponent implements OnInit {
     }
     this.filtercontent.genre=genre;
     this.httpService.VideojuegogetFilter(this.filtercontent)
-    .subscribe(data=>{
-<<<<<<< HEAD
-      
+    .subscribe(data=>{    
       this.videojuegos=data.listaVideojuego;
-      
-      
-=======
-      {this.videojuegos=data.listaVideojuego;
-
-      }
->>>>>>> ce19b031f5265077237c6bb2880b6899fb852dd7
     });
     this.myControl.reset();
   }
