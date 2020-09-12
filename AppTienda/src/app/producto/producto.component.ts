@@ -23,8 +23,7 @@ export class ProductoComponent implements OnInit {
     idioma:string;
   }
   filtercontent: FilterContent;
-
-
+  
   constructor(private httpService:HttpServiceService,private route:ActivatedRoute) {
     this.filtercontent= {
       genre: null,
@@ -36,6 +35,7 @@ export class ProductoComponent implements OnInit {
     )
       .subscribe(data=>{
         {
+          console.log(data);
           this.videojuegos=data.listaVideojuego;
         }
       });
@@ -67,9 +67,10 @@ export class ProductoComponent implements OnInit {
     this.filtercontent.genre=genre;
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{
-      {this.videojuegos=data.listaVideojuego;
-       
-      }
+      
+      this.videojuegos=data.listaVideojuego;
+      
+      
     });
     this.myControl.reset();
   }

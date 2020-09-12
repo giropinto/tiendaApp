@@ -27,6 +27,7 @@ export class ProductDetailsComponent implements OnInit {
     videojuego.titulo=this.titulo;
     this.http.VideojuegogetByName(videojuego).subscribe(data=>{
       this.videojuego=data;
+      console.log(data);
    });
   }
 
