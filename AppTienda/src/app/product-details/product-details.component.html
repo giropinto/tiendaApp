@@ -1,37 +1,28 @@
 <main>
+  <div>
+    <img src="{{videojuego.urlimg}}">
+  </div>
+  <div class="name">
+    <a class = "videoname">{{videojuego.titulo}}</a>
+  </div>
+  <div class="caja">
+    <a class="buy">${{videojuego.precio}}</a>
+    <button class="btn">Add to cart</button>
+  </div>
+  <section class="cajita">
     <div>
-      <img src="{{videojuego.urlimg}}">
-    </div>
-    <div class="name">
-      <a class = "videoname">{{videojuego.titulo}}</a>
-    </div>
-    <div class="caja">
-      <a class="buy">${{videojuego.precio}}</a>
-      <button class="btn">Añadir al carrito</button>
-    </div>
-    <section class="cajita">
-      <div>
-        <div class="title">
-          <p class = "gametitle">Géneros</p>
-        </div>
-        <section class="ga">
-          <div *ngFor="let r of lgdto.genero" class = "data">
-            <p>{{r}}</p>
-          </div>
-        </section>
+      <div class="title">
+        <p class = "gametitle">Géneros</p>
       </div>
-      <div>
-        <div class="title">
-          <p class = "gametitle">Idiomas</p>
+      <section class="ga">
+        <div *ngFor="let r of lgdto.genero" class = "data">
+          <p>{{r}}</p>
         </div>
-        <div>
-  
-        </div>
-        <section class="ga">
-          <div *ngFor="let r of lgdto.lenguaje" class = "data">
-            <p>{{r}}</p>
-          </div>
-        </section>
+      </section>
+    </div>
+    <div>
+      <div class="title">
+        <p class = "gametitle">Idiomas</p>
       </div>
       <div>
         <div class="title">
@@ -41,5 +32,7 @@
           <p>{{videojuego.desarrolladora}}</p>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
+
