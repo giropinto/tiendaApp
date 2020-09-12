@@ -6,5 +6,4 @@ import lombok.Data;
 public class TiendaDto {
     String TiendaCodigo;
     String TiendaNombre;
-
 }
