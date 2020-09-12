@@ -27,8 +27,8 @@ export class ProductDetailsComponent implements OnInit {
     const videojuego: Videojuego = {
       idvideojuego: null,
       titulo: null,
-	    precio: null,
-	    fecha_lanzamiento: null,
+        precio: null,
+        fecha_lanzamiento: null,
       desarrolladora: null,
       urlimg: null,
     };
@@ -47,3 +47,4 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 }
+
