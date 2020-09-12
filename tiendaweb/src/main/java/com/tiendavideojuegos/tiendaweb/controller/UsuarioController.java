@@ -16,7 +16,8 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
     public ResponsePayloadLogin loginUsuario(@RequestBody UsuarioRequest usuarioRequest){
-        return usuarioService.loginUsuario(usuarioRequest);
+        throw new IllegalStateException("ok");
+        //return usuarioService.loginUsuario(usuarioRequest);
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
     public ResponsePayloadRegister registrarUsuario(@RequestBody UsuarioRequest usuarioRequest){
