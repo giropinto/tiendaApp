@@ -56,21 +56,13 @@ export class ProductoComponent implements OnInit {
     return this.videojuegos.filter((videojuego) => videojuego.titulo.toLowerCase().includes(filterValue));
   }
   FilterGenre(genre){
-    let genreid:String;
-    switch (genre) {
-      case "Accion":
-        genreid="200";
-        break;
-
-      default:
-        break;
-    }
+    
     this.filtercontent.genre=genre;
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{    
       this.videojuegos=data.listaVideojuego;
     });
-    this.myControl.reset();
+    this.myControl.setValue("");
   }
   FilterLanguage(language){
 
@@ -81,6 +73,8 @@ export class ProductoComponent implements OnInit {
        console.log(this.videojuegos);
       }
     });
+    this.myControl.setValue("");
+    
   }
 
 }

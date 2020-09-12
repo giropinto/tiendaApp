@@ -3,6 +3,7 @@ package com.tiendavideojuegos.tiendaweb.controller;
 import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadLogin;
 import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadRegister;
 import com.tiendavideojuegos.tiendaweb.dto.UsuarioRequest;
+import com.tiendavideojuegos.tiendaweb.exception.ApiRequestException;
 import com.tiendavideojuegos.tiendaweb.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
     public ResponsePayloadLogin loginUsuario(@RequestBody UsuarioRequest usuarioRequest){
-        throw new IllegalStateException("ok");
+        throw new ApiRequestException("ok");
         //return usuarioService.loginUsuario(usuarioRequest);
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
