@@ -37,6 +37,7 @@ export class ProductoComponent implements OnInit {
         {
           console.log(data);
           this.videojuegos=data.listaVideojuego;
+          console.log(data);
         }
       });
   }
@@ -47,7 +48,7 @@ export class ProductoComponent implements OnInit {
       startWith(''),
       debounceTime(1000),
       map(value => this._filter(value))) ;
-     
+
   }
   private _filter(value: string): Videojuego[] {
     const filterValue = value.toLowerCase();
@@ -60,29 +61,35 @@ export class ProductoComponent implements OnInit {
       case "Accion":
         genreid="200";
         break;
-    
+
       default:
         break;
     }
     this.filtercontent.genre=genre;
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{
+<<<<<<< HEAD
       
       this.videojuegos=data.listaVideojuego;
       
       
+=======
+      {this.videojuegos=data.listaVideojuego;
+
+      }
+>>>>>>> ce19b031f5265077237c6bb2880b6899fb852dd7
     });
     this.myControl.reset();
   }
   FilterLanguage(language){
-    
+
     this.filtercontent.language=language;
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{
       {this.videojuegos=data.listaVideojuego;
        console.log(this.videojuegos);
       }
-    }); 
+    });
   }
- 
+
 }
