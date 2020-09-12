@@ -25,4 +25,5 @@ public class VideojuegosService {
     public LGDto GetLG(VideojuegoDto videojuegoDto){
         return videojuegoDao.GetLG(videojuegoDto);
     }
+    
 }

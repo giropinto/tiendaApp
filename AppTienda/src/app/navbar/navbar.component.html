@@ -77,7 +77,8 @@
         </form>
       </div>
       <div class="modal-footer ">{{LoginStringMode}} 
-        <a (click)="SwitchMode()">{{LoginMode}}</a>
+        <a *ngIf="!isLoginMode"(click)="SwitchMode()" >Sign In</a>
+        <a *ngIf="isLoginMode" (click)="SwitchMode()">Sign Up</a>
       </div>
     </div>
   </div>
