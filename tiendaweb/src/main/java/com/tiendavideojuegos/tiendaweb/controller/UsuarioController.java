@@ -1,6 +1,8 @@
 package com.tiendavideojuegos.tiendaweb.controller;
 
-import com.tiendavideojuegos.tiendaweb.dto.Usuario;
+import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadRegister;
+import com.tiendavideojuegos.tiendaweb.dto.UsuarioRequest;
+import com.tiendavideojuegos.tiendaweb.dto.UsuarioResponse;
 import com.tiendavideojuegos.tiendaweb.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +15,11 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
-    public Usuario loginUsuario(@RequestBody Usuario usuario){
-        return usuarioService.loginUsuario(usuario);
+    public UsuarioResponse loginUsuario(@RequestBody UsuarioRequest usuarioRequest){
+        return usuarioService.loginUsuario(usuarioRequest);
+    }
+    @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
+    public ResponsePayloadRegister registrarUsuario(@RequestBody UsuarioRequest usuarioRequest){
+        return usuarioService.registrarUsuario(usuarioRequest);
     }
 }

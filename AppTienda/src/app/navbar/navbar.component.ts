@@ -9,18 +9,19 @@ declare var $: any;
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  usuario: string;
-  password: string;
   loginsuccess: boolean;
+  username: string;
+  email: string;
+  contrasenia: string;
   ingresar(): void{
       const client: UsuarioRequest = {
-        username: this.usuario,
-        contrasenia: this.password,
+        username: this.username,
+        contrasenia: this.contrasenia,
         nombres: null,
         apellidos: null
       };
       this.api.obtenerSuscriptor(client).subscribe( data => {
-        if (this.usuario === data.username && this.password === data.contrasenia){
+        if (this.username === data.username && this.contrasenia === data.contrasenia){
           alert('Login completed!');
           this.route.navigate(['/about']);
           // tslint:disable-next-line:only-arrow-functions
@@ -35,7 +36,6 @@ export class NavbarComponent implements OnInit {
     });
   }
   constructor(private api: ApiService, private route: Router) { }
-
   ngOnInit(): void {
   }
 

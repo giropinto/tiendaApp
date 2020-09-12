@@ -3,7 +3,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tiendavideojuegos.tiendaweb.dto.Usuario;
+import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadRegister;
+import com.tiendavideojuegos.tiendaweb.dto.UsuarioRequest;
+import com.tiendavideojuegos.tiendaweb.dto.UsuarioResponse;
 import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -60,7 +62,9 @@ public class VideojuegoDaoImpl implements CrudDaoInterface<VideojuegoDto> {
         return lista;
     }
 
-    public Usuario loginUsuario(Usuario usuario) {
+    public UsuarioResponse loginUsuario(UsuarioRequest usuarioRequest) {
         return null;
     }
+
+    public ResponsePayloadRegister registrarUsuario(UsuarioRequest usuarioRequest) {return null;}
 }

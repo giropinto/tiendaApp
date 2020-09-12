@@ -103,14 +103,14 @@ INSERT INTO relaciontv
 VALUES ("111","5","CS.steam","2020-07-02",21.40,19.50);
 COMMIT;
 UPDATE videojuegos SET genero = "Carreras" WHERE idvideojuego ="13";
-CREATE TABLE usuario(
+CREATE TABLE usuarioResponse(
                         nombres VARCHAR(20),
                         apellidos VARCHAR(20),
                         username VARCHAR(15) PRIMARY KEY,
                         contrasenia VARCHAR(15)
 );
-INSERT INTO usuario VALUES ('Kevin', 'Rosado', 'krosados', '030602');
-INSERT INTO usuario VALUES ('Giro', 'Pinto', 'gpintol', '260201');
-INSERT INTO usuario VALUES ('Jack', 'Mendoza', 'jmendozap', '190601');
-INSERT INTO usuario VALUES ('Carlos', 'Merino', 'cmerinos', '150801');
+INSERT INTO usuarioResponse VALUES ('Kevin', 'Rosado', 'krosados', '030602');
+INSERT INTO usuarioResponse VALUES ('Giro', 'Pinto', 'gpintol', '260201');
+INSERT INTO usuarioResponse VALUES ('Jack', 'Mendoza', 'jmendozap', '190601');
+INSERT INTO usuarioResponse VALUES ('Carlos', 'Merino', 'cmerinos', '150801');
 COMMIT;

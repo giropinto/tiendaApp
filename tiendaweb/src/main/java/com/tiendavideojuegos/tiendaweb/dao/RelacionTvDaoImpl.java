@@ -6,7 +6,9 @@ import java.util.List;
 
 import com.tiendavideojuegos.tiendaweb.dto.RelacionTv;
 
-import com.tiendavideojuegos.tiendaweb.dto.Usuario;
+import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadRegister;
+import com.tiendavideojuegos.tiendaweb.dto.UsuarioRequest;
+import com.tiendavideojuegos.tiendaweb.dto.UsuarioResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -76,9 +78,12 @@ public class RelacionTvDaoImpl implements CrudDaoInterface<RelacionTv>{
         return lista;
     }
 
-    public Usuario loginUsuario(Usuario usuario) {
+    public UsuarioResponse loginUsuario(UsuarioRequest usuarioRequest) {
         return null;
     }
+
+    public ResponsePayloadRegister registrarUsuario(UsuarioRequest usuarioRequest) {return null;}
+
     public List<RelacionTv> getbyName(RelacionTv relacionTv){return null;}
     
 }
