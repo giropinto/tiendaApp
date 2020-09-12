@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
       console.log(!user);
       console.log(!!user);
     });
+    
   }
   
   $: any;
@@ -72,6 +73,7 @@ export class NavbarComponent implements OnInit {
     },2000);
   }
  
+  
  
   
 

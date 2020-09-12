@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from '../Services/http-service.service';
-import { RelacionTv } from '../Models/RelacionTv';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, startWith, debounceTime} from 'rxjs/operators';
-import { Videojuego } from '../Models/Videojuego';
+import { Videojuego, VideojuegoLista } from '../Models/Videojuego';
+import { FilterContent } from '../Models/Filter';
 
 
 
@@ -14,21 +14,30 @@ import { Videojuego } from '../Models/Videojuego';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
   myControl = new FormControl();
-
-  videojuegos:Videojuego[];
+  videoLista:VideojuegoLista;
+  videojuegos:Videojuego[] ;
   filteredOptions: Observable<Videojuego[]> = null;
-
+  filterContent: FilterContent;
+ 
 
   constructor(private httpService:HttpServiceService) {
-   this.httpService.VideojuegogetAll()
+    this.filterContent= {
+      genre: null,
+      language: null,
+      page: null,
+      searchAs: null
+    }
+   this.httpService.VideojuegogetFilter(this.filterContent)
     .subscribe(data=>{
-      {this.videojuegos=data; console.log(this.videojuegos)
+      {this.videojuegos=data.listaVideojuego;
+       
       }
     });
    }
   ngOnInit(): void {
-      this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
         debounceTime(100),
         map(value => this._filter(value))) ;
@@ -38,4 +47,23 @@ export class HomeComponent implements OnInit {
 
       return this.videojuegos.filter((videojuego) => videojuego.titulo.toLowerCase().includes(filterValue));
     }
+  FilterGenre(genre){
+    genre= "201";
+    this.filterContent.genre=genre;
+    this.httpService.VideojuegogetFilter(this.filterContent)
+    .subscribe(data=>{
+      {this.videojuegos=data.listaVideojuego;
+       
+      }
+    });
+  }
+  FilterLanguage(Language){
+    this.filterContent.language=Language;
+    this.httpService.VideojuegogetFilter(this.filterContent)
+    .subscribe(data=>{
+      {this.videojuegos=data.listaVideojuego;
+       
+      }
+    });
+  }
 }
