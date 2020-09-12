@@ -67,7 +67,6 @@ main{
   top: 30px;
   font-size: 80px;
 }
-
 .cajita{
   display: flex;
   width: 55%;
@@ -102,8 +101,6 @@ main{
   font-size: 30px;
   font-family: Rockwell;
 }
-
-
 .ga{
   height: 70%;
   width: 100%;
