@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { FilterContent} from '../Models/Filter'
-import { Videojuego,VideojuegoLista} from '../Models/Videojuego';
+import {LGDto, Videojuego, VideojuegoLista} from '../Models/Videojuego';
 
 import { catchError, map, retry, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class HttpServiceService {
-  
-  
-  constructor(private http:HttpClient) { } 
+
+
+  constructor(private http:HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json;charset=utf-8'
@@ -33,14 +33,20 @@ export class HttpServiceService {
         retry(1),
         catchError(this.errorHandl)
       );
-  } 
+  }
   VideojuegogetByName(data: Videojuego): Observable<Videojuego>{
     return this.http.post<Videojuego>('http://localhost:8080/GamesByName', data, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)
       );
-  } 
-  
- 
+  }
+  VideojuegoData(data: Videojuego): Observable<LGDto>{
+    return this.http.post<LGDto>('http://localhost:8080/GetLG', data, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
+
 }

@@ -37,6 +37,7 @@ export class ProductoComponent implements OnInit {
       .subscribe(data=>{
         {
           this.videojuegos=data.listaVideojuego;
+          console.log(data);
         }
       });
   }
@@ -47,7 +48,7 @@ export class ProductoComponent implements OnInit {
       startWith(''),
       debounceTime(1000),
       map(value => this._filter(value))) ;
-     
+
   }
   private _filter(value: string): Videojuego[] {
     const filterValue = value.toLowerCase();
@@ -60,7 +61,7 @@ export class ProductoComponent implements OnInit {
       case "Accion":
         genreid="200";
         break;
-    
+
       default:
         break;
     }
@@ -68,20 +69,20 @@ export class ProductoComponent implements OnInit {
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{
       {this.videojuegos=data.listaVideojuego;
-       
+
       }
     });
     this.myControl.reset();
   }
   FilterLanguage(language){
-    
+
     this.filtercontent.language=language;
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{
       {this.videojuegos=data.listaVideojuego;
        console.log(this.videojuegos);
       }
-    }); 
+    });
   }
- 
+
 }
