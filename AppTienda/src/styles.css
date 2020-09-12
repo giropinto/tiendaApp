@@ -8,15 +8,14 @@ html, body { height: 100%;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 #buyButton{
-
     background-color: #141414;
     margin-left: 2vw;
     margin-right: 2vw;
     margin-top: 1vh;
     font-size: 20px;
-    font-family: "Rockwell";
+    font-family: Rockwell;
     position: absolute;
-    top: 14px;
+    top: 10px;
     right: 30%;
     border: none;
     outline: none;
@@ -25,7 +24,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-family: inherit;
     margin: 0;
   }
-  
+
   #buyButton:hover{
     background-color: blueviolet;
     border-radius: 15px;

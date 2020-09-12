@@ -1,38 +1,68 @@
-
-<div class="searchbartext">
-  <div class="searchbarlist">
-    <div class="btn-group">
-      <button class="boton-size btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        All Games
-      </button>
-      <div class="dropdown-menu owndropdown-content" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" routerLinkActive="activado" routerLink="/home">Action</a>
-        <a class="dropdown-item" routerLink="/home">Adventure</a>
-        <a class="dropdown-item" routerLink="/home">Indie</a>
-        <a class="dropdown-item" routerLink="/home">RPG</a>
-        <a class="dropdown-item" routerLink="/home">Shooter</a>
-        <a class="dropdown-item" routerLink="/home">Simulatio</a>
-        <a class="dropdown-item" routerLink="/home">Sports</a>
-        <a class="dropdown-item" routerLink="/home">Racing</a>
-        <a class="dropdown-item" routerLink="/home">Strategy</a>
+<main>
+  <div class="searchbartext">
+    <div class="searchbarlist">
+      <div class="btn-group">
+        <button class="boton-size btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          All Games
+        </button>
+        <div class="dropdown-menu owndropdown-content" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" routerLinkActive="activado" routerLink="/home">Action</a>
+          <a class="dropdown-item" routerLink="/home">Adventure</a>
+          <a class="dropdown-item" routerLink="/home">Indie</a>
+          <a class="dropdown-item" routerLink="/home">RPG</a>
+          <a class="dropdown-item" routerLink="/home">Shooter</a>
+          <a class="dropdown-item" routerLink="/home">Simulatio</a>
+          <a class="dropdown-item" routerLink="/home">Sports</a>
+          <a class="dropdown-item" routerLink="/home">Racing</a>
+          <a class="dropdown-item" routerLink="/home">Strategy</a>
+        </div>
       </div>
     </div>
+    <div>
+      <img class = "lupa" src="assets/lupa.png">
+    </div>
+    <form class="example-form" >
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Search" matInput  [formControl]="myControl" [matAutocomplete] = "auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor = "let option of filteredOptions | async" [value] = "option.titulo">
+            <p>{{option.titulo}}</p>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
   </div>
-  <div>
-    <img class = "lupa" src="assets/lupa.png">
+  <div class = "filterbuttons">
+    <button (click)="FilterLanguage(null)" class = "btn btn-info">All Languages</button>
+    <button (click)="FilterLanguage('300')" class = "btn btn-info">Español</button>
+    <button (click)="FilterLanguage('301')" class = "btn btn-info">English</button>
+    <button (click)="FilterLanguage('302')" class = "btn btn-info">Deutsch</button>
+    <button (click)="FilterLanguage('303')" class = "btn btn-info">Japanese</button>
+    <button (click)="FilterLanguage('304')" class = "btn btn-info">Chinese</button>
+    <button (click)="FilterLanguage('305')" class = "btn btn-info">Francois</button>
+    <button (click)="FilterLanguage('306')" class = "btn btn-info">Portugués</button>
+    <button (click)="FilterLanguage('307')" class = "btn btn-info">Italiano</button>
+    <button (click)="FilterLanguage('308')" class = "btn btn-info">Russian</button>
   </div>
-  <form class="example-form" >
-    <mat-form-field class="example-full-width">
-      <input type="text" placeholder="Search" matInput  [formControl]="myControl" [matAutocomplete] = "auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor = "let option of filteredOptions | async" [value] = "option.titulo">
-          <p>{{option.titulo}}</p>
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-</div>
- <div class="container">
+  <div class = "filterbuttons ">
+    <button (click)="FilterGenre(null)" class = "btn btn-info">All Genres</button>
+    <button (click)="FilterGenre('200')" class = "btn btn-info">Action</button>
+    <button (click)="FilterGenre('201')" class = "btn btn-info">Adventure</button>
+    <button (click)="FilterGenre('204')" class = "btn btn-info">RPG</button>
+    <button (click)="FilterGenre('205')" class = "btn btn-info">Indie</button>
+    <button (click)="FilterGenre('206')" class = "btn btn-info">Shooter</button>
+    <button (click)="FilterGenre('207')" class = "btn btn-info">Simulation</button>
+    <button (click)="FilterGenre('208')" class = "btn btn-info">Sports</button>
+    <button (click)="FilterGenre('209')" class = "btn btn-info">Racing</button>
+    <button (click)="FilterGenre('210')" class = "btn btn-info">Strategy</button>
+    <button (click)="FilterGenre('211')" class = "btn btn-info">Combat</button>
+    <button (click)="FilterGenre('212')" class = "btn btn-info">Battle Royale</button>
+    <button (click)="FilterGenre('213')" class = "btn btn-info">Platform</button>
+    <button (click)="FilterGenre('214')" class = "btn btn-info">Survival</button>
+    <button (click)="FilterGenre('215')" class = "btn btn-info">Horror</button>
+    <button (click)="FilterGenre('216')" class = "btn btn-info">Anime</button>
+  </div>
+  <div class="container">
     <div *ngFor = "let r of filteredOptions | async" class="game-box">
       <div class="image-box">
         <img class = "picture" src="{{r.urlimg}}">
@@ -46,13 +76,7 @@
         </div>
       </div>
     </div>
- </div>
-<a (click)="FilterLanguage('300')">Español</a>
-<button (click)="FilterLanguage('301')">English</button>
-<a (click)="FilterLanguage('302')">Deutsch</a>
-<a (click)="FilterLanguage('303')">Japanese</a>
-<button (click)="FilterLanguage('304')">Chinese</button>
-<a (click)="FilterLanguage('305')">Francois</a>
-<a (click)="FilterLanguage('306')">Portugués</a>
-<a (click)="FilterLanguage('307')">Italiano</a>
-<a (click)="FilterLanguage('308')">Russian</a>
+  </div>
+</main>
+
+

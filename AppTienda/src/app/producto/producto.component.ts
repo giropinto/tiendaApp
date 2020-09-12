@@ -61,7 +61,7 @@ export class ProductoComponent implements OnInit {
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{    
       this.videojuegos=data.listaVideojuego;
-    });
+    }); 
     this.myControl.setValue("");
   }
   FilterLanguage(language){
