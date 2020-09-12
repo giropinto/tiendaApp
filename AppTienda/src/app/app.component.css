@@ -69,8 +69,6 @@ ul {
     display: block;
     text-align: left;
   }
-
-
   .dropdown-content a:hover,.dropdown-contentb a:hover {
       background-color: white;
     }
@@ -78,3 +76,4 @@ ul {
   .dropdown:hover .dropdown-content,.dropdownb:hover .dropdown-contentb {
     display: block;
   }
+

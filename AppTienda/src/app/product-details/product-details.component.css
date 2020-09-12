@@ -16,7 +16,7 @@ main{
   width: 100%;
 }
 .name{
-  padding: 4vh 2.5vh 2.5vh 2.5vh;
+  padding: 3vh 2.5vh 2.5vh 2.5vh;
   text-align: center;
   flex-wrap: wrap;
   line-height: 40px;
