@@ -2,6 +2,7 @@ package com.tiendavideojuegos.tiendaweb.dao;
 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -72,8 +73,27 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
 
      @Override
      public VideojuegoDto FindByName(VideojuegoDto videojuegoDto) {
-         // TODO Auto-generated method stub
-         return null;
+
+        VideojuegoDto videojuego1 = new VideojuegoDto();
+        String sql = "SELECT idvideojuego, titulo, precio, fecha_lanzamiento, desarrolladora, urlimg FROM videojuego WHERE titulo = ? ";
+        try {
+            Connection cn = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, videojuegoDto.getTitulo());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                videojuego1.setDesarrolladora(rs.getString("desarrolladora"));
+                videojuego1.setFecha_lanzamiento(rs.getString("fecha_lanzamiento"));
+                videojuego1.setIdvideojuego(rs.getString("idvideojuego"));
+                videojuego1.setPrecio(rs.getDouble("precio"));
+                videojuego1.setTitulo(rs.getString("titulo"));
+                videojuego1.setUrlimg(rs.getString("urlimg"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return videojuego1;
      }
 
 }

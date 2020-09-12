@@ -28,7 +28,14 @@ export class HttpServiceService {
     return throwError(errorMessage);
   }
   VideojuegogetFilter(data: FilterContent): Observable<VideojuegoLista>{
-    return this.http.post<VideojuegoLista>('http://localhost:8080/videojuegos', data, this.httpOptions)
+    return this.http.post<VideojuegoLista>('http://localhost:8080/Allgames', data, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  } 
+  VideojuegogetByName(data: Videojuego): Observable<Videojuego>{
+    return this.http.post<Videojuego>('http://localhost:8080/GamesByName', data, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)

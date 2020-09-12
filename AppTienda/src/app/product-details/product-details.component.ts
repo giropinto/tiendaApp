@@ -9,14 +9,25 @@ import { HttpServiceService } from '../Services/http-service.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  productoid;
-  videojuegos:Videojuego[];
+  titulo:string = null;
+  videojuego: Videojuego;
   constructor(private route:ActivatedRoute, private http:HttpServiceService) {
-     this.productoid = this.route.snapshot.params['id'];
+     this.titulo = this.route.snapshot.params['id'];
     }
 
   ngOnInit(): void {
-   
+    const videojuego: Videojuego ={
+      idvideojuego: null,
+      titulo: null,
+	    precio: null,
+	    fecha_lanzamiento: null,
+      desarrolladora: null,
+      urlimg: null,
+    }
+    videojuego.titulo=this.titulo;
+    this.http.VideojuegogetByName(videojuego).subscribe(data=>{
+      this.videojuego=data;
+   });
   }
 
 }

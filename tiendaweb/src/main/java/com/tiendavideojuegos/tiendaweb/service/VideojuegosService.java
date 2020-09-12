@@ -4,7 +4,7 @@ package com.tiendavideojuegos.tiendaweb.service;
 import com.tiendavideojuegos.tiendaweb.dao.VideojuegoDao;
 import com.tiendavideojuegos.tiendaweb.dto.FilterDto;
 import com.tiendavideojuegos.tiendaweb.dto.ListaVideojuego;
-
+import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +18,8 @@ public class VideojuegosService {
         listaVideojuego.setListaVideojuego(videojuegoDao.FindWithFilter(filterDto));
         return listaVideojuego;
 
-    }   
+    } 
+    public VideojuegoDto FindByName(VideojuegoDto videojuegoDto){
+        return videojuegoDao.FindByName(videojuegoDto);
+    }
 }

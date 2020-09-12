@@ -3,6 +3,7 @@ package com.tiendavideojuegos.tiendaweb.controller;
 
 import com.tiendavideojuegos.tiendaweb.dto.FilterDto;
 import com.tiendavideojuegos.tiendaweb.dto.ListaVideojuego;
+import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 import com.tiendavideojuegos.tiendaweb.service.VideojuegosService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,16 @@ public class VideojuegosController {
     @Autowired 
     private VideojuegosService videojuegosService;
 
-    @RequestMapping(value = "/videojuegos",
+    @RequestMapping(value = "/Allgames",
                         method = RequestMethod.POST,
                         produces = "application/json;charset=utf-8")
-        public @ResponseBody ListaVideojuego FindWithFilter(@RequestBody FilterDto filterDto){
-            return videojuegosService.FindWithFilter(filterDto);
-        }
+    public @ResponseBody ListaVideojuego FindWithFilter(@RequestBody FilterDto filterDto){
+        return videojuegosService.FindWithFilter(filterDto);
+      }
+    @RequestMapping(value = "/GamesByName",
+                    method = RequestMethod.POST,
+                    produces = "application/json;charset=utf-8")
+    public @ResponseBody VideojuegoDto FindByName(@RequestBody VideojuegoDto videojuegoDto){
+        return videojuegosService.FindByName(videojuegoDto);
+    }
 }
