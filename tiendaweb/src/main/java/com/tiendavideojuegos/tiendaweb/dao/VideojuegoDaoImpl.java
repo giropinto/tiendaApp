@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tiendavideojuegos.tiendaweb.dto.FilterDto;
+import com.tiendavideojuegos.tiendaweb.dto.LGDto;
 import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,58 +22,57 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class VideojuegoDaoImpl implements VideojuegoDao {
 
- 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<VideojuegoDto> FindWithFilter(FilterDto filterDto){
-        
-        
+    public List<VideojuegoDto> FindWithFilter(FilterDto filterDto) {
+
         List<VideojuegoDto> listaVideojuego = new ArrayList<>();
-        if(filterDto.getGenre()!=null){
-           filterDto.setGenre(" idgenero = "+ filterDto.getGenre());   
-        }else{
+        if (filterDto.getGenre() != null) {
+            filterDto.setGenre(" idgenero = " + filterDto.getGenre());
+        } else {
             filterDto.setGenre(" True ");
         }
-        if(filterDto.getLanguage()!=null){
-            filterDto.setLanguage(" idlenguaje = "+ filterDto.getLanguage()); 
-        }else{
+        if (filterDto.getLanguage() != null) {
+            filterDto.setLanguage(" idlenguaje = " + filterDto.getLanguage());
+        } else {
             filterDto.setLanguage(" True ");
         }
-        if(filterDto.getPage()==null){
+        if (filterDto.getPage() == null) {
 
         }
-        if(filterDto.getSearchAs()==null){}
+        if (filterDto.getSearchAs() == null) {
+        }
 
-        String sql  = " SELECT * From videojuego Where idvideojuego IN (SELECT idvideojuego FROM relaciongv WHERE "
-        +filterDto.getGenre() + " AND idvideojuego in (SELECT idvideojuego FROM relacionlv WHERE " 
-        +filterDto.getLanguage() + " ));";
+        String sql = " SELECT * From videojuego Where idvideojuego IN (SELECT idvideojuego FROM relaciongv WHERE "
+                + filterDto.getGenre() + " AND idvideojuego in (SELECT idvideojuego FROM relacionlv WHERE "
+                + filterDto.getLanguage() + " ));";
 
-         try {
-             Connection connection = jdbcTemplate.getDataSource().getConnection();
+        try {
+            Connection connection = jdbcTemplate.getDataSource().getConnection();
             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql);
- 
-             while (resultSet.next()) {
-                 VideojuegoDto videojuegoDto = new VideojuegoDto();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                VideojuegoDto videojuegoDto = new VideojuegoDto();
                 videojuegoDto.setDesarrolladora(resultSet.getString("desarrolladora"));
                 videojuegoDto.setFecha_lanzamiento(resultSet.getString("fecha_lanzamiento"));
                 videojuegoDto.setIdvideojuego(resultSet.getString("idvideojuego"));
                 videojuegoDto.setPrecio(resultSet.getDouble("precio"));
                 videojuegoDto.setTitulo(resultSet.getString("titulo"));
                 videojuegoDto.setUrlimg(resultSet.getString("urlimg"));
-                 listaVideojuego.add(videojuegoDto);
-             }
+                listaVideojuego.add(videojuegoDto);
+            }
 
-             connection.close();
-         } catch (SQLException e) {
-             e.printStackTrace();
-         }
-         return listaVideojuego;
-     }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaVideojuego;
+    }
 
-     @Override
-     public VideojuegoDto FindByName(VideojuegoDto videojuegoDto) {
+    @Override
+    public VideojuegoDto FindByName(VideojuegoDto videojuegoDto) {
 
         VideojuegoDto videojuego1 = new VideojuegoDto();
         String sql = "SELECT idvideojuego, titulo, precio, fecha_lanzamiento, desarrolladora, urlimg FROM videojuego WHERE titulo = ? ";
@@ -94,6 +94,41 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
             e.printStackTrace();
         }
         return videojuego1;
-     }
+    }
+
+    @Override
+    public LGDto GetLG(VideojuegoDto videojuegoDto) {
+       
+        LGDto lgDto = new LGDto();
+        List<String> genero= new ArrayList<>();
+        List<String> lenguaje= new ArrayList<>();
+        String sql1 = "SELECT nombre FROM generos WHERE idgenero IN (SELECT idgenero FROM relaciongv WHERE idvideojuego = ?);";
+        String sql2 = "SELECT nombre FROM lenguajes WHERE idlenguaje IN (SELECT idlenguaje FROM relacionlv WHERE idvideojuego = ?)";
+       
+        try {
+            Connection cn1 = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement ps1 = cn1.prepareStatement(sql1);
+            ps1.setString(1, videojuegoDto.getIdvideojuego());
+            ResultSet rs1 = ps1.executeQuery();
+          
+            while (rs1.next()) {
+                genero.add(rs1.getString("nombre"));
+            }
+            lgDto.setGenero(genero);
+            cn1.close();
+            Connection cn2 = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement ps2 = cn2.prepareStatement(sql2);
+            ps2.setString(1, videojuegoDto.getIdvideojuego());
+            ResultSet rs2 = ps2.executeQuery();
+            while (rs2.next()) {
+                lenguaje.add(rs2.getString("nombre"));
+            }
+            lgDto.setLenguaje(lenguaje);
+            cn2.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lgDto;
+    }
 
 }

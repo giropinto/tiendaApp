@@ -1,8 +1,8 @@
 package com.tiendavideojuegos.tiendaweb.service;
 
-
 import com.tiendavideojuegos.tiendaweb.dao.VideojuegoDao;
 import com.tiendavideojuegos.tiendaweb.dto.FilterDto;
+import com.tiendavideojuegos.tiendaweb.dto.LGDto;
 import com.tiendavideojuegos.tiendaweb.dto.ListaVideojuego;
 import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 
@@ -21,5 +21,8 @@ public class VideojuegosService {
     } 
     public VideojuegoDto FindByName(VideojuegoDto videojuegoDto){
         return videojuegoDao.FindByName(videojuegoDto);
+    }
+    public LGDto GetLG(VideojuegoDto videojuegoDto){
+        return videojuegoDao.GetLG(videojuegoDto);
     }
 }

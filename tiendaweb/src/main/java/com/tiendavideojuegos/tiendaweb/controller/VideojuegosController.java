@@ -2,6 +2,7 @@ package com.tiendavideojuegos.tiendaweb.controller;
 
 
 import com.tiendavideojuegos.tiendaweb.dto.FilterDto;
+import com.tiendavideojuegos.tiendaweb.dto.LGDto;
 import com.tiendavideojuegos.tiendaweb.dto.ListaVideojuego;
 import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 import com.tiendavideojuegos.tiendaweb.service.VideojuegosService;
@@ -29,5 +30,11 @@ public class VideojuegosController {
                     produces = "application/json;charset=utf-8")
     public @ResponseBody VideojuegoDto FindByName(@RequestBody VideojuegoDto videojuegoDto){
         return videojuegosService.FindByName(videojuegoDto);
+    }
+    @RequestMapping(value = "/GetLG",
+                    method = RequestMethod.POST,
+                    produces = "application/json;charset=utf-8")
+    public @ResponseBody LGDto GetLG(@RequestBody VideojuegoDto videojuegoDto){
+        return videojuegosService.GetLG(videojuegoDto);
     }
 }
