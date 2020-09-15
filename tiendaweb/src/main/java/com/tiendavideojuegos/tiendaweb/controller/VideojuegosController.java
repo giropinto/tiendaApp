@@ -37,4 +37,10 @@ public class VideojuegosController {
     public @ResponseBody LGDto GetLG(@RequestBody VideojuegoDto videojuegoDto){
         return videojuegosService.GetLG(videojuegoDto);
     }
+    @RequestMapping(value = "/GetTop",
+            method = RequestMethod.POST,
+            produces = "application/json;charset=utf-8")
+    public @ResponseBody ListaVideojuego TopGames(){
+        return videojuegosService.TopGames();
+    }
 }

@@ -25,5 +25,10 @@ public class VideojuegosService {
     public LGDto GetLG(VideojuegoDto videojuegoDto){
         return videojuegoDao.GetLG(videojuegoDto);
     }
+    public ListaVideojuego TopGames(){
+        ListaVideojuego listaVideojuego = new ListaVideojuego();
+        listaVideojuego.setListaVideojuego(videojuegoDao.TopGames());
+        return listaVideojuego;
+    }
     
 }

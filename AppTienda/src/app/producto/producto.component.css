@@ -67,21 +67,30 @@
   padding: 0px;
   padding-top: 0px;
 }
-.container{
-  margin-top: 3vh;
+.gamescontainer{
+  margin-right: 0px;
   padding: 0px;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 95%;
   height: 80%;
   margin-bottom: 10%;
 }
+.filtercontainer{
+  width: 5%;
+}
 .game-box{
-  margin: 3vh;
-  height: 30vh;
+  margin: 3vh 0px 3vh 3vh;
+  height: 40vh;
   width: 20%;
-  background-color: #999999;
-  box-shadow: 5px 5px 5px black;
+  background-color: #f9f9f9;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.game-box:hover{
+  transform: translate(-15px);
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
 }
 .image-box{
   padding: 2vh;
@@ -111,4 +120,8 @@
 }
 .filterbuttons button{
   margin: 2vh;
+}
+.container{
+  display: flex;
+  margin: 0px;
 }

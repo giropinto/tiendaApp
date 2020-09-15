@@ -48,5 +48,11 @@ export class HttpServiceService {
         catchError(this.errorHandl)
       );
   }
-
+  VideojuegoTop(): Observable<VideojuegoLista>{
+    return this.http.post<VideojuegoLista>('http://localhost:8080/GetTop', this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
 }

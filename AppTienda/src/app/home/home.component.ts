@@ -14,54 +14,30 @@ import { FilterContent } from '../Models/Filter';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
-  myControl = new FormControl();
-  videoLista:VideojuegoLista;
-  videojuegos:Videojuego[] ;
-  filteredOptions: Observable<Videojuego[]> = null;
-  filterContent: FilterContent;
- 
-
-  constructor(private httpService:HttpServiceService) {
-    this.filterContent= {
-      genre: null,
-      language: null,
-    }
-   this.httpService.VideojuegogetFilter(this.filterContent)
-    .subscribe(data=>{
-      {this.videojuegos=data.listaVideojuego;
-       
-      }
-    });
+  videojuegos: Videojuego[] = [];
+  gamescarrusel: Videojuego[] = [];
+  gamescard: Videojuego[] = [];
+  constructor(private httpService: HttpServiceService) {
+    this.httpService.VideojuegoTop().pipe(
+    )
+      .subscribe(data=>{
+        {
+          console.log(data);
+          this.videojuegos = data.listaVideojuego;
+          console.log(this.videojuegos);
+          for (let i = 0; i < 3 ; i++) {
+            this.gamescarrusel[i] = this.videojuegos[i];
+          }
+          console.log(this.gamescarrusel);
+          for(let i = 0; i < 7; i++){
+            this.gamescard[i] = this.videojuegos[i + 3];
+          }
+          console.log(this.gamescard);
+        }
+      });
    }
   ngOnInit(): void {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-        startWith(''),
-        debounceTime(100),
-        map(value => this._filter(value))) ;
-    }
-    private _filter(value: string): Videojuego[] {
-      const filterValue = value.toLowerCase();
 
-      return this.videojuegos.filter((videojuego) => videojuego.titulo.toLowerCase().includes(filterValue));
-    }
-  FilterGenre(genre){
-    genre= "201";
-    this.filterContent.genre=genre;
-    this.httpService.VideojuegogetFilter(this.filterContent)
-    .subscribe(data=>{
-      {this.videojuegos=data.listaVideojuego;
-       
-      }
-    });
   }
-  FilterLanguage(Language){
-    this.filterContent.language=Language;
-    this.httpService.VideojuegogetFilter(this.filterContent)
-    .subscribe(data=>{
-      {this.videojuegos=data.listaVideojuego;
-       
-      }
-    });
-  }
+
 }

@@ -33,50 +33,30 @@
     </form>
   </div>
   <div class = "filterbuttons">
-    <button (click)="FilterLanguage(null)" class = "btn btn-info">All Languages</button>
-    <button (click)="FilterLanguage('300')" class = "btn btn-info">Español</button>
-    <button (click)="FilterLanguage('301')" class = "btn btn-info">English</button>
-    <button (click)="FilterLanguage('302')" class = "btn btn-info">Deutsch</button>
-    <button (click)="FilterLanguage('303')" class = "btn btn-info">Japanese</button>
-    <button (click)="FilterLanguage('304')" class = "btn btn-info">Chinese</button>
-    <button (click)="FilterLanguage('305')" class = "btn btn-info">Francois</button>
-    <button (click)="FilterLanguage('306')" class = "btn btn-info">Portugués</button>
-    <button (click)="FilterLanguage('307')" class = "btn btn-info">Italiano</button>
-    <button (click)="FilterLanguage('308')" class = "btn btn-info">Russian</button>
   </div>
   <div class = "filterbuttons ">
-    <button (click)="FilterGenre(null)" class = "btn btn-info">All Genres</button>
-    <button (click)="FilterGenre('200')" class = "btn btn-info">Action</button>
-    <button (click)="FilterGenre('201')" class = "btn btn-info">Adventure</button>
-    <button (click)="FilterGenre('204')" class = "btn btn-info">RPG</button>
-    <button (click)="FilterGenre('205')" class = "btn btn-info">Indie</button>
-    <button (click)="FilterGenre('206')" class = "btn btn-info">Shooter</button>
-    <button (click)="FilterGenre('207')" class = "btn btn-info">Simulation</button>
-    <button (click)="FilterGenre('208')" class = "btn btn-info">Sports</button>
-    <button (click)="FilterGenre('209')" class = "btn btn-info">Racing</button>
-    <button (click)="FilterGenre('210')" class = "btn btn-info">Strategy</button>
-    <button (click)="FilterGenre('211')" class = "btn btn-info">Combat</button>
-    <button (click)="FilterGenre('212')" class = "btn btn-info">Battle Royale</button>
-    <button (click)="FilterGenre('213')" class = "btn btn-info">Platform</button>
-    <button (click)="FilterGenre('214')" class = "btn btn-info">Survival</button>
-    <button (click)="FilterGenre('215')" class = "btn btn-info">Horror</button>
-    <button (click)="FilterGenre('216')" class = "btn btn-info">Anime</button>
   </div>
-  <div class="container">
-    <div *ngFor = "let r of filteredOptions | async" class="game-box">
-      <div class="image-box">
-        <img class = "picture" src="{{r.urlimg}}">
-      </div>
-      <div class = "description">
-        <div class = "box-name">
-          <a>{{r.titulo}}</a>
+  <div class = "container">
+    <div class = "filtercontainer">
+
+    </div>
+    <div class="gamescontainer">
+      <div *ngFor = "let r of filteredOptions | async" class="game-box">
+        <div class="image-box">
+          <img class = "picture" src="{{r.urlimg}}">
         </div>
-        <div class = "box-price">
-          <a [routerLink]="['/games',r.titulo]">See more</a>
+        <div class = "description">
+          <div class = "box-name">
+            <a>{{r.titulo}}</a>
+          </div>
+          <div class = "box-price">
+            <a [routerLink]="['/games',r.titulo]">See more</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </main>
 
 

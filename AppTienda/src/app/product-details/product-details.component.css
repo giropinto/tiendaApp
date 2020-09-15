@@ -6,7 +6,7 @@ img{
   padding: 0;
   background-size: cover;
   font-family: sans-serif;
-  height: 85vh;
+  height: 100vh;
 }
 main{
   width: 100%;
@@ -26,7 +26,6 @@ main{
   font-size: 40px;
   font-family: Rockwell;
   background-color: #9D3BA4;
-  z-index: 50;
   position: absolute;
   top: 30%;
   box-shadow: 5px 5px 5px black;

@@ -9,4 +9,5 @@ public class VideojuegoDto {
 	private String fecha_lanzamiento;
     private String desarrolladora ;
     private String urlimg;
+    private Integer visitas;
 }

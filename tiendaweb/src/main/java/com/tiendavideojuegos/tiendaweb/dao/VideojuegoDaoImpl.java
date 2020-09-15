@@ -25,6 +25,32 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public List<VideojuegoDto> TopGames() {
+        List<VideojuegoDto> listaVideojuego = new ArrayList<>();
+
+        String sql = "SELECT  titulo, precio, urlimg, visitas FROM videojuego ORDER BY visitas DESC LIMIT 10;";
+
+        try {
+            Connection connection = jdbcTemplate.getDataSource().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                VideojuegoDto videojuegoDto = new VideojuegoDto();
+                videojuegoDto.setPrecio(resultSet.getDouble("precio"));
+                videojuegoDto.setTitulo(resultSet.getString("titulo"));
+                videojuegoDto.setUrlimg(resultSet.getString("urlimg"));
+                videojuegoDto.setVisitas(resultSet.getInt("visitas"));
+                listaVideojuego.add(videojuegoDto);
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaVideojuego;
+    }
+
     public List<VideojuegoDto> FindWithFilter(FilterDto filterDto) {
 
         List<VideojuegoDto> listaVideojuego = new ArrayList<>();
@@ -105,6 +131,7 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
             ps2.setString(1, videojuegoDto.getTitulo());
             ps2.executeUpdate();    
             cn2.close();
+            cn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -140,6 +167,7 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
             }
             lgDto.setLenguaje(lenguaje);
             cn2.close();
+            cn1.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
