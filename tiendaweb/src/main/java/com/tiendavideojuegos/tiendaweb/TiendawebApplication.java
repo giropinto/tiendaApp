@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class TiendawebApplication {
 	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TiendawebApplication.class, args);
 	}

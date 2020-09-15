@@ -26,10 +26,8 @@ export class ProductoComponent implements OnInit {
   
   constructor(private httpService:HttpServiceService,private route:ActivatedRoute) {
     this.filtercontent= {
-      genre: null,
-      language: null,
-      page: null,
-      searchAs: null
+      genre: [],
+      language: [], 
     }
     this.httpService.VideojuegogetFilter(this.filtercontent).pipe(
     )
@@ -55,7 +53,7 @@ export class ProductoComponent implements OnInit {
 
     return this.videojuegos.filter((videojuego) => videojuego.titulo.toLowerCase().includes(filterValue));
   }
-  FilterGenre(genre){
+  FilterGenre(genre:string []){
     
     this.filtercontent.genre=genre;
     this.httpService.VideojuegogetFilter(this.filtercontent)
@@ -64,7 +62,7 @@ export class ProductoComponent implements OnInit {
     }); 
     this.myControl.setValue("");
   }
-  FilterLanguage(language){
+  FilterLanguage(language: string[]){
 
     this.filtercontent.language=language;
     this.httpService.VideojuegogetFilter(this.filtercontent)

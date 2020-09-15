@@ -26,8 +26,6 @@ export class HomeComponent implements OnInit {
     this.filterContent= {
       genre: null,
       language: null,
-      page: null,
-      searchAs: null
     }
    this.httpService.VideojuegogetFilter(this.filterContent)
     .subscribe(data=>{

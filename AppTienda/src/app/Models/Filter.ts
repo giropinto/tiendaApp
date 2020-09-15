@@ -1,6 +1,4 @@
 export class FilterContent{
-    genre: string;
-    language: string;
-    page: number;
-    searchAs: string;
+    genre?: string[];
+    language?: string[];
 }

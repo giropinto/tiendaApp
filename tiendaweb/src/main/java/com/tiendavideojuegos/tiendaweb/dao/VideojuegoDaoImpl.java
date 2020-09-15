@@ -28,25 +28,33 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
     public List<VideojuegoDto> FindWithFilter(FilterDto filterDto) {
 
         List<VideojuegoDto> listaVideojuego = new ArrayList<>();
-        if (filterDto.getGenre() != null) {
-            filterDto.setGenre(" idgenero = " + filterDto.getGenre());
-        } else {
-            filterDto.setGenre(" True ");
+        String genreString =" ";
+        String languageString=" ";
+        filterDto.getGenre().size();
+        filterDto.getLanguage().size();
+        int i;
+        if(filterDto.getGenre().size()>0){
+            genreString = genreString + " idgenero IN (";
+            for(i=0;i<filterDto.getGenre().size()-1;i++){
+                genreString =  genreString +" "+ filterDto.getGenre().get(i)+",";
+            }
+            genreString = genreString +" "+  filterDto.getGenre().get(i)+" )";
+        }else{
+            genreString = " TRUE ";
         }
-        if (filterDto.getLanguage() != null) {
-            filterDto.setLanguage(" idlenguaje = " + filterDto.getLanguage());
-        } else {
-            filterDto.setLanguage(" True ");
-        }
-        if (filterDto.getPage() == null) {
-
-        }
-        if (filterDto.getSearchAs() == null) {
+        if(filterDto.getLanguage().size()>0){
+            languageString = languageString + " idlenguaje IN (";
+            for(i=0;i<filterDto.getLanguage().size()-1;i++){
+                languageString = languageString + " " +filterDto.getLanguage().get(i)+",";
+            }
+            languageString = languageString +"  "+ filterDto.getLanguage().get(i)+" )";
+        }else{
+            languageString = " TRUE ";
         }
 
         String sql = " SELECT * From videojuego Where idvideojuego IN (SELECT idvideojuego FROM relaciongv WHERE "
-                + filterDto.getGenre() + " AND idvideojuego in (SELECT idvideojuego FROM relacionlv WHERE "
-                + filterDto.getLanguage() + " ));";
+                + genreString + " AND idvideojuego in (SELECT idvideojuego FROM relacionlv WHERE "
+                + languageString+ " ));";
 
         try {
             Connection connection = jdbcTemplate.getDataSource().getConnection();

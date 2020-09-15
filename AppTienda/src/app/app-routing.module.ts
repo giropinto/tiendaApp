@@ -20,9 +20,8 @@ const routes: Routes = [
   {path:'navbar', component:NavbarComponent},
   {path:'software', component: SoftwareComponent,canActivate:[AuthGuardService]},
   {path:'producto', component:ProductoComponent,canActivate:[AuthGuardService] },
-  {path: 'producto/:id',component:ProductDetailsComponent,canActivate:[AuthGuardService]},
+  {path: 'games/:id',component:ProductDetailsComponent,canActivate:[AuthGuardService]},
   {path:'atencion', component:AtencionComponent,canActivate:[AuthGuardService]},
- 
   {path: '**',component:PageNotFoundComponent}
 ];
 
