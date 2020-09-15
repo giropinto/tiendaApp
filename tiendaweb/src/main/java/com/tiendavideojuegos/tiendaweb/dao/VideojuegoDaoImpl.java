@@ -76,6 +76,8 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
 
         VideojuegoDto videojuego1 = new VideojuegoDto();
         String sql = "SELECT idvideojuego, titulo, precio, fecha_lanzamiento, desarrolladora, urlimg FROM videojuego WHERE titulo = ? ";
+        String sql2 = "UPDATE videojuego SET visitas = visitas+1  WHERE titulo = ?";
+        
         try {
             Connection cn = jdbcTemplate.getDataSource().getConnection();
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -90,6 +92,11 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
                 videojuego1.setTitulo(rs.getString("titulo"));
                 videojuego1.setUrlimg(rs.getString("urlimg"));
             }
+            Connection cn2 = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement ps2 = cn2.prepareStatement(sql2);
+            ps2.setString(1, videojuegoDto.getTitulo());
+            ps2.executeUpdate();    
+            cn2.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

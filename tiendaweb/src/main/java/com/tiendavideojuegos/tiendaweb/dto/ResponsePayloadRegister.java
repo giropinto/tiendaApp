@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class ResponsePayloadRegister {
-    private String idtoken;
+    private String Idtoken;
     private String email;
     private String refreshtoken;
     private String expiresIn;
-    private String localid;
+    private String localId;
 }

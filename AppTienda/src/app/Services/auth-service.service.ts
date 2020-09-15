@@ -27,7 +27,7 @@ export class AuthServiceService {
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyB5raA5F9keWVv9QhvS3gmYOknTDBJT5H4',
+        'http://localhost:8080/register',
         {
           email: email,
           password: password,
@@ -50,7 +50,7 @@ export class AuthServiceService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyB5raA5F9keWVv9QhvS3gmYOknTDBJT5H4',
+        'http://localhost:8080/loginuser',
         {
           email: email,
           password: password,
@@ -128,18 +128,15 @@ export class AuthServiceService {
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
-    if (!errorRes.error || !errorRes.error.error) {
+    if (!errorRes.message ) {
       return throwError(errorMessage);
     }
-    switch (errorRes.error.error.message) {
+    switch (errorRes.error.message) {
       case 'EMAIL_EXISTS':
         errorMessage = 'This email exists already';
         break;
       case 'EMAIL_NOT_FOUND':
-        errorMessage = 'This email does not exist.';
-        break;
-      case 'INVALID_PASSWORD':
-        errorMessage = 'This password is not correct.';
+        errorMessage = 'Wrong email or password.';
         break;
     }
     return throwError(errorMessage);

@@ -1,7 +1,6 @@
 package com.tiendavideojuegos.tiendaweb.exception;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +16,8 @@ public class ApiExceptionHandler {
 
         ApiException apiException = new ApiException(
                 e.getMessage(),
-                badRequest,
-                ZonedDateTime.now(ZoneId.of("z"))
+                badRequest
         );
-        // 2, return response entity
         return new ResponseEntity<>(apiException, badRequest);
     }
 

@@ -17,8 +17,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     @RequestMapping(value = "/loginuser", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
     public ResponsePayloadLogin loginUsuario(@RequestBody UsuarioRequest usuarioRequest){
-        throw new ApiRequestException("ok");
-        //return usuarioService.loginUsuario(usuarioRequest);
+        return usuarioService.loginUsuario(usuarioRequest);
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
     public ResponsePayloadRegister registrarUsuario(@RequestBody UsuarioRequest usuarioRequest){
