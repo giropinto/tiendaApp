@@ -23,11 +23,10 @@ export class ProductoComponent implements OnInit {
     idioma:string;
   }
   filtercontent: FilterContent;
-  
   constructor(private httpService:HttpServiceService,private route:ActivatedRoute) {
     this.filtercontent= {
       genre: [],
-      language: [], 
+      language: [],
     }
     this.httpService.VideojuegogetFilter(this.filtercontent).pipe(
     )
@@ -54,12 +53,12 @@ export class ProductoComponent implements OnInit {
     return this.videojuegos.filter((videojuego) => videojuego.titulo.toLowerCase().includes(filterValue));
   }
   FilterGenre(genre:string []){
-    
+
     this.filtercontent.genre=genre;
     this.httpService.VideojuegogetFilter(this.filtercontent)
-    .subscribe(data=>{    
+    .subscribe(data=>{
       this.videojuegos=data.listaVideojuego;
-    }); 
+    });
     this.myControl.setValue("");
   }
   FilterLanguage(language: string[]){
@@ -72,7 +71,7 @@ export class ProductoComponent implements OnInit {
       }
     });
     this.myControl.setValue("");
-    
+
   }
 
 }
