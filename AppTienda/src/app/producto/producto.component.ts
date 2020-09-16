@@ -20,10 +20,10 @@ export class ProductoComponent implements OnInit {
   LoadedOption:boolean =true;
   filtercontent: FilterContent;
   nestedForm: FormGroup;
-  selecteGeneros = [];
   generolist = ['200', '201', '204', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', '216'];
-  lenguajes: Array<string>;
   generos=  ['Action', 'Adventure', 'RPG', 'Indie', 'Shooter', 'Simulation', 'Sports', 'Racing', 'Strategy', 'Combat', 'Battle Royale', 'Platform', 'Survival', 'Horror', 'Anime'];
+  lenguajelist=['300', '301', '302', '303', '304', '305', '306', '307', '308'];
+  lenguajes= ['Español', 'English', 'Deutsch', 'Japanese', 'Chinese', 'Francois', 'Portugués', 'Italiano', 'Russian'];
   constructor(private httpService:HttpServiceService,private route:ActivatedRoute,private formbuilder: FormBuilder) {
     this.filtercontent= {
       genre: [],
@@ -44,6 +44,7 @@ export class ProductoComponent implements OnInit {
   ngOnInit(): void {
     this.nestedForm = this.formbuilder.group({
       generovideojuego: this.addGenresControls(),
+      lenguajevideojuego: this.addLanguageControls(),
     });
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -63,9 +64,17 @@ export class ProductoComponent implements OnInit {
     });
     return this.formbuilder.array(arr);
   }
-
+  addLanguageControls(){
+    const arr = this.lenguajes.map(element =>{
+      return this.formbuilder.control(false);
+    });
+    return this.formbuilder.array(arr);
+  }
   get selectedGenres(){
     return <FormArray>this.nestedForm.get('generovideojuego');
+  }
+  get selectedLanguages(){
+    return <FormArray>this.nestedForm.get('lenguajevideojuego');
   }
   getSelectedGenre(){
     this.filtercontent.genre = [];
@@ -81,23 +90,20 @@ export class ProductoComponent implements OnInit {
     });
     this.myControl.setValue("");
   }
-  FilterGenre(genre:string []){
+  getSelectedLanguage(){
+    this.filtercontent.language = [];
+    this.selectedLanguages.controls.forEach((control,i)=>{
+      if(control.value){
+        this.filtercontent.language.push(this.lenguajelist[i]);
+      }
+    });
+    console.log(this.filtercontent.language)
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{
       this.videojuegos=data.listaVideojuego;
     });
     this.myControl.setValue("");
   }
-  FilterLanguage(language: string[]){
-
-    this.filtercontent.language=language;
-    this.httpService.VideojuegogetFilter(this.filtercontent)
-    .subscribe(data=>{
-      {this.videojuegos=data.listaVideojuego;
-       console.log(this.videojuegos);
-      }
-    });
-    this.myControl.setValue("");
-  }
+  
 
 }

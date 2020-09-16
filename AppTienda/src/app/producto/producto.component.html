@@ -18,10 +18,18 @@
   <div class = "container">
 
     <div class = "filtercontainer">
+        <p>Genre</p>
         <div class="form-check" *ngFor="let control of selectedGenres.controls; let i =index;">
           <input class="form-check-input" (change)=" getSelectedGenre()" [formControl]="control" type="checkbox" value="option{{i}}  " id="defaultCheck{{i}}">
           <label class="form-check-label" for="defaultCheck{{i}}">
             {{generos[i]}}
+          </label>
+        </div>
+        <p>Language</p>
+        <div class="form-check" *ngFor="let control of selectedLanguages.controls; let i =index;">
+          <input class="form-check-input" (change)=" getSelectedLanguage()" [formControl]="control" type="checkbox" value="option{{i}}  " id="defaultCheck{{i}}">
+          <label class="form-check-label" for="defaultCheck{{i}}">
+            {{lenguajes[i]}}
           </label>
         </div>
     </div>
