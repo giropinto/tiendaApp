@@ -68,16 +68,16 @@
   padding-top: 0px;
 }
 .gamescontainer{
-  margin-right: 0px;
-  padding: 0px;
   display: flex;
   flex-wrap: wrap;
-  width: 95%;
+  width: 90%;
   height: 80%;
   margin-bottom: 10%;
+  justify-content: center;
 }
 .filtercontainer{
-  width: 5%;
+  width: 30%;
+  background-color: #00aced;
 }
 .game-box{
   margin: 3vh 0px 3vh 3vh;
@@ -122,6 +122,7 @@
   margin: 2vh;
 }
 .container{
+  max-width: 100%;
   display: flex;
   margin: 0px;
 }
