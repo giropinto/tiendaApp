@@ -32,7 +32,7 @@
       </mat-form-field>
     </form>
   </div>
-  
+
   <div class = "container">
 
     <div class = "filtercontainer">
@@ -46,7 +46,7 @@
     <div class="gamescontainer">
       <div *ngFor = "let r of filteredOptions | async" class="game-box">
         <div class="image-box">
-          <img class = "picture" src="; let i ={{r.urlimg}}">
+          <img class = "picture" src="{{r.urlimg}}">
         </div>
         <div class = "description">
           <div class = "box-name">

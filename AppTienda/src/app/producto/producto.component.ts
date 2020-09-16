@@ -23,7 +23,7 @@ export class ProductoComponent implements OnInit {
   selecteGeneros = [];
   generolist = ['200', '201', '204', '205', '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', '216'];
   lenguajes: Array<string>;
-  generos=  ['Action', 'Adventure', 'Sports', 'Simulation', 'RPG', 'Indie', 'Shooter', 'Racing', 'Strategy', 'Combat', 'Battle Royale', 'Platform', 'Survival', 'Horror', 'Anime'];
+  generos=  ['Action', 'Adventure', 'RPG', 'Indie', 'Shooter', 'Simulation', 'Sports', 'Racing', 'Strategy', 'Combat', 'Battle Royale', 'Platform', 'Survival', 'Horror', 'Anime'];
   constructor(private httpService:HttpServiceService,private route:ActivatedRoute,private formbuilder: FormBuilder) {
     this.filtercontent= {
       genre: [],
@@ -48,7 +48,7 @@ export class ProductoComponent implements OnInit {
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      debounceTime(2000),
+      debounceTime(1000),
       map(value => this._filter(value))) ;
   }
   private _filter(value: string): Videojuego[] {
