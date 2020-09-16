@@ -36,61 +36,17 @@
   <div class = "container">
 
     <div class = "filtercontainer">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Default checkbox
+        <div class="form-check" *ngFor="let control of selectedGenres.controls; let i =index;">
+          <input class="form-check-input" (change)=" getSelectedGenre()" [formControl]="control" type="checkbox" value="option{{i}}  " id="defaultCheck{{i}}">
+          <label class="form-check-label" for="defaultCheck{{i}}">
+            {{generos[i]}}
           </label>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Default checkbox
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Default checkbox
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Default checkbox
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Default checkbox
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Default checkbox
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Default checkbox
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Default checkbox
-          </label>
-        </div>
-        
-      
     </div>
     <div class="gamescontainer">
       <div *ngFor = "let r of filteredOptions | async" class="game-box">
         <div class="image-box">
-          <img class = "picture" src="{{r.urlimg}}">
+          <img class = "picture" src="; let i ={{r.urlimg}}">
         </div>
         <div class = "description">
           <div class = "box-name">
