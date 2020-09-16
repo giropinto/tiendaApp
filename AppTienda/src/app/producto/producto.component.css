@@ -70,17 +70,24 @@
 .gamescontainer{
   display: flex;
   flex-wrap: wrap;
+<<<<<<< HEAD
   width: 90%;
+=======
+  width: 85%;
+>>>>>>> 659272f7612791bf61bf506fe420d6a0543140c0
   height: 80%;
   margin-bottom: 10%;
   justify-content: center;
 }
 .filtercontainer{
-  width: 30%;
-  background-color: #00aced;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5vh;
 }
 .game-box{
-  margin: 3vh 0px 3vh 3vh;
+  margin: 1.5vh 1.5vw 1.5vh 1.5vw;
   height: 40vh;
   width: 20%;
   background-color: #f9f9f9;
@@ -114,15 +121,13 @@
   padding: 1vh;
   text-align: right;
 }
-.filterbuttons{
-  margin-left: 5%;
-  margin-right: 5%;
-}
-.filterbuttons button{
-  margin: 2vh;
+.form-check{
+  margin-top: 2vh;
 }
 .container{
   max-width: 100%;
   display: flex;
-  margin: 0px;
+  max-width: 100%;
+  flex-direction: row;
+  box-sizing: border-box;
 }
