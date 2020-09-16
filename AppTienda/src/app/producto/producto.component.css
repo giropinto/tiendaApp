@@ -70,11 +70,7 @@
 .gamescontainer{
   display: flex;
   flex-wrap: wrap;
-<<<<<<< HEAD
-  width: 90%;
-=======
   width: 85%;
->>>>>>> 659272f7612791bf61bf506fe420d6a0543140c0
   height: 80%;
   margin-bottom: 10%;
   justify-content: center;
