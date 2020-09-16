@@ -14,7 +14,6 @@ import { MaterialModule } from './material/material.module'
 import  {ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
-import { SoftwareComponent } from './software/software.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthInterceptorService } from './Services/auth-interceptor.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
@@ -27,7 +26,6 @@ import { FooterComponent } from './footer/footer.component';
     AtencionComponent,
     NavbarComponent,
     AboutComponent,
-    SoftwareComponent,
     PageNotFoundComponent,
     ProductDetailsComponent,
     FooterComponent

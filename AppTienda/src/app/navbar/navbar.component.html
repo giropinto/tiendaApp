@@ -5,36 +5,6 @@
     <button class="owndropbtn" routerLink="/producto/">GAMES
       <i class="fa fa-caret-down"></i>
     </button>
-    <div class="owndropdown-content">
-      <a routerLink="/home">New Releases</a>
-      <a routerLink="/home">Best Sellers</a>
-      <a routerLink="/home">On sale Now</a>
-      <hr>
-      <a routerLink="/home">Action</a>
-      <a routerLink="/home">Adventure</a>
-      <a routerLink="/home">Indie</a>
-      <a routerLink="/home">RPG</a>
-      <a routerLink="/home">Shooter</a>
-      <a routerLink="/home">Simulation</a>
-      <a routerLink="/home">Sports</a>
-      <a routerLink="/home">Racing</a>
-      <a routerLink="/home">Strategy</a>
-      <hr>
-      <a routerLink="/home" >Browse All</a>
-    </div>
-  </div>
-  <div class="owndropdown position">
-    <button class="owndropbtn" routerLink="/software">SOFTWARE
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="owndropdown-content">
-      <a routerLink="/home">Antivirus</a>
-      <a routerLink="/home">Ofimatica</a>
-      <a routerLink="/home">Best Sellers</a>
-      <a routerLink="/home">On sale Now</a>
-      <hr>
-      <a routerLink="/home" >Browse All</a>
-    </div>
   </div>
   <img style="float: right;" class="ownlogo" src="assets/a2b.png">
   <div *ngIf="!isAuthenticated" class="position" style = "float: right">
@@ -43,7 +13,7 @@
   <div *ngIf="isAuthenticated">
     <a style="cursor: pointer; float: right;" class="position" (click)="onLogout()">Logout</a>
   </div>
-  
+
 </div>
 <div id="myModal" class="modal fade">
   <div class="modal-dialog modal-login">
@@ -76,12 +46,12 @@
           <p *ngIf="isLoginMode" class="hint-text"><a>Forgot Password?</a></p>
         </form>
       </div>
-      <div class="modal-footer ">{{LoginStringMode}} 
+      <div class="modal-footer ">{{LoginStringMode}}
         <a *ngIf="!isLoginMode"(click)="SwitchMode()" >Sign In</a>
         <a *ngIf="isLoginMode" (click)="SwitchMode()">Sign Up</a>
       </div>
     </div>
   </div>
-  
-  
+
+
 </div>
