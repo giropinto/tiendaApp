@@ -1,4 +1,6 @@
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { SellCart, Totalprice } from '../Models/Cart';
 
@@ -7,7 +9,7 @@ import { SellCart, Totalprice } from '../Models/Cart';
 })
 export class ProductsellService {
 
-  constructor() { }
+  constructor(private router:Router) { }
   Carrito = new BehaviorSubject<SellCart>(null);
   
   Addtocart(price: number,gameId: string
@@ -59,5 +61,6 @@ export class ProductsellService {
   DropCart(){
     localStorage.removeItem('a2bcar');
     this.Carrito.next(null);
+    this.router.navigateByUrl("/producto");
   }
 }

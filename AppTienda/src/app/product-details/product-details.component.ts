@@ -20,7 +20,7 @@ export class ProductDetailsComponent implements OnInit {
     desarrolladora: null,
     urlimg: null,
   };
-  lgdto: LGDto;
+  lgdto: LGDto = new LGDto;
   constructor(private route: ActivatedRoute, private http:HttpServiceService,private sellservice:ProductsellService) {
      this.titulo = this.route.snapshot.params['id'];
   }
