@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { AuthResponseData, AuthServiceService} from "../Services/auth-service.service"
 import { Observable, Subscription } from 'rxjs';
+import { ProductsellService } from '../Services/productsell.service';
 declare var $: any;
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
   
-  constructor(private authService: AuthServiceService, private route: Router) {
+  constructor(private authService: AuthServiceService, private route: Router,private sellservice:ProductsellService) {
    }
 
   ngOnInit(): void {
@@ -24,7 +25,9 @@ export class NavbarComponent implements OnInit {
     });
     
   }
-  
+  DropCart(){
+    this.sellservice.DropCart();
+  }
   $: any;
   LoginMode = "Sign In";
   isAuthenticated = false;

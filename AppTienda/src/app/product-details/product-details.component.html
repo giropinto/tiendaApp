@@ -7,7 +7,8 @@
   </div>
   <div class="caja">
     <a class="buy">${{videojuego.precio}}</a>
-    <button class="btn">Add to cart</button>
+    <button *ngIf="!Allreadyadded"(click)="addToCart()"class="btn">Add to cart</button>
+    <button *ngIf="Allreadyadded"(click)="RemovefromCart()"class="btn">Remove from cart</button>
   </div>
   <section class="cajita">
     <div>
