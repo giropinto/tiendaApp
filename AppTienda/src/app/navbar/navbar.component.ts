@@ -7,6 +7,8 @@ import { AuthResponseData, AuthServiceService} from "../Services/auth-service.se
 import { Observable, Subscription } from 'rxjs';
 import { ProductsellService } from '../Services/productsell.service';
 declare var $: any;
+declare var Culqi: any;
+declare var culqijs: any;
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -28,7 +30,6 @@ export class NavbarComponent implements OnInit {
   DropCart(){
     this.sellservice.DropCart();
   }
-  $: any;
   LoginMode = "Sign In";
   isAuthenticated = false;
   isLoginMode = true;
@@ -76,8 +77,30 @@ export class NavbarComponent implements OnInit {
     },2000);
   }
  
-  
- 
-  
+  abrirpago():void{
+    Culqi.publicKey = 'pk_test_1f34f9d5710278fe';
+    Culqi.settings({
+      title: 'Culqi Store',
+      currency: 'PEN',
+      description: 'Polo/remera Culqi lover',
+      amount: 3500
+    });
+    
+      Culqi.open(); 
+      
+  } 
+  culqi():void {
+    if (Culqi.token) { // ¡Objeto Token creado exitosamente!
+        var token = Culqi.token.id;
+        alert('Se ha creado un token:' + token);
+        //En esta linea de codigo debemos enviar el "Culqi.token.id"
+        //hacia tu servidor con Ajax
+    } else { // ¡Hubo algún problema!
+        // Mostramos JSON de objeto error en consola
+        console.log(Culqi.error);
+        alert(Culqi.error.user_message);
+    }
+  };
 
+    
 }

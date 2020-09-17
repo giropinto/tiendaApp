@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthInterceptorService } from './Services/auth-interceptor.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { FooterComponent } from './footer/footer.component';
+import { CarritoComponent } from './carrito/carrito.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { FooterComponent } from './footer/footer.component';
     AboutComponent,
     PageNotFoundComponent,
     ProductDetailsComponent,
-    FooterComponent
+    FooterComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,

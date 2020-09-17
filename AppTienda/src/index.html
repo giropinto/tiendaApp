@@ -15,41 +15,9 @@
 
 <body class="mat-typography">
   <app-root></app-root>
-    <button id="buyButton" type="button">COMPRAR</button>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 
-<script>
-
-  Culqi.publicKey = 'pk_test_1f34f9d5710278fe';
-  Culqi.settings({
-  title: 'Culqi Store',
-  currency: 'PEN',
-  description: 'Polo/remera Culqi lover',
-  amount: 3500
-});
-$('#buyButton').on('click', function(e) {
-    // Abre el formulario con la configuración en Culqi.settings
-    Culqi.open();
-    e.preventDefault();
-});
-
-function culqi() {
-if (Culqi.token){
-  var token = Culqi.token.id; 
-  
-  var message = "Se ha creado el objeto Token: " + token + ". Recordar que hasta este " +
-  "punto solo se ha generado un token, no se ha realizado un cargo a ninguna tarjeta."; 
-
-  console.log(message);
-  alert(message);
-  Culqi.close();
-} else {
-  alert(Culqi.error.user_message)
-}
-};
-
-</script>
 </html>
