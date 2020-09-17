@@ -17,12 +17,15 @@ export class HomeComponent implements OnInit {
   videojuegos: Videojuego[] = [];
   gamescarrusel: Videojuego[] = [];
   gamescard: Videojuego[] = [];
+  waiting: boolean = true;
   constructor(private httpService: HttpServiceService) {
     this.httpService.VideojuegoTop().pipe(
     )
       .subscribe(data=>{
         {
-          console.log(data);
+          setTimeout(()=>{
+            this.waiting=false;
+          },500);
           this.videojuegos = data.listaVideojuego;
           console.log(this.videojuegos);
           for (let i = 0; i < 3 ; i++) {
