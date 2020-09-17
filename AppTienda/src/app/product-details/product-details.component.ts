@@ -24,7 +24,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http:HttpServiceService,private sellservice:ProductsellService) {
      this.titulo = this.route.snapshot.params['id'];
   }
-  
+
   ngOnInit(): void {
     const videojuego: Videojuego = {
       idvideojuego: null,
@@ -42,13 +42,13 @@ export class ProductDetailsComponent implements OnInit {
     this.http.VideojuegogetByName(videojuego).subscribe(data => {
       this.videojuego = data;
       videojuego.idvideojuego = this.videojuego.idvideojuego;
-      if(this.sellservice.Carrito!=null){
+      if(this.sellservice.Carrito.value!=null){
         for(let i=0;i<this.sellservice.Carrito.value.productId.length;i++){
           if(this.sellservice.Carrito.value.productId[i]==this.videojuego.idvideojuego){
             this.Allreadyadded=true;
-          } 
+          }
         }
-      } 
+      }
       this.http.VideojuegoData(videojuego).subscribe(res => {
         this.lgdto = res;
         console.log(this.lgdto);
