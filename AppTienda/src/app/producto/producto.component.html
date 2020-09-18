@@ -17,6 +17,7 @@
 
   <div class = "container">
     <div class = "filtercontainer">
+      <div class = "filterlist">
         <p>Genre</p>
         <div class="form-check" *ngFor="let control of selectedGenres.controls; let i =index;">
           <input class="form-check-input" (change)=" getSelectedGenre()" [formControl]="control" type="checkbox" value="option{{i}}  " id="defaultCheck{{i}}">
@@ -24,6 +25,9 @@
             {{generos[i]}}
           </label>
         </div>
+      </div>
+      <hr class = "linea">
+      <div class = "filterlist">
         <p>Language</p>
         <div class="form-check" *ngFor="let control of selectedLanguages.controls; let i =index;">
           <input class="form-check-input" (change)=" getSelectedLanguage()" [formControl]="control" type="checkbox" value="option{{i}}  " id="defaultCheck{{i}}">
@@ -31,6 +35,7 @@
             {{lenguajes[i]}}
           </label>
         </div>
+      </div>
     </div>
     <div class="gamescontainer">
       <div *ngFor = "let r of filteredOptions | async" class="game-box">
