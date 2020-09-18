@@ -8,7 +8,9 @@
         <a class = "videoname">{{videojuego.titulo}}</a>
       </div>
       <div class="caja">
-        <a class="buy">${{videojuego.precio}}</a>
+        <div class="buy">
+          <p>${{videojuego.precio}}</p>
+        </div>
         <button *ngIf="!Allreadyadded"(click)="addToCart()"class="btn">Add to cart</button>
         <button *ngIf="Allreadyadded"(click)="RemovefromCart()"class="btn">Remove from cart</button>
       </div>
@@ -17,29 +19,33 @@
           <div class="title">
             <p class = "gametitle">Géneros</p>
           </div>
-          <section class="ga">
+          <section class="ga" style="height: 12vh;">
             <div *ngFor="let r of lgdto.genero" class = "data">
               <p>{{r}}</p>
             </div>
           </section>
         </div>
+        <hr class="lineaseparadora">
         <div class = "datos">
           <div class="title">
             <p class = "gametitle">Idiomas</p>
           </div>
-          <section class = "ga">
+          <section class = "ga" style="height: 20vh;">
             <div *ngFor="let r of lgdto.lenguaje" class = "data">
               <p>{{r}}</p>
             </div>
           </section>
         </div>
+        <hr class="lineaseparadora">
         <div class = "datos">
           <div class="title">
             <p class="gametitle">Desarrolladora</p>
           </div>
-          <div class = "detalle">
-            <p>{{videojuego.desarrolladora}}</p>
-          </div>
+          <section class="ga">
+            <div class = "data">
+              <p>{{videojuego.desarrolladora}}</p>
+            </div>
+          </section>
         </div>
       </section>
     </div>
