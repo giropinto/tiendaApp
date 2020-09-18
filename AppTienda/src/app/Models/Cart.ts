@@ -8,4 +8,5 @@ export class Totalprice{
     amount? : number;
     currency?: string;
     isEmpty?: boolean;
+    expirationTime?: Date;
 }

@@ -65,4 +65,29 @@ export class CarritoComponent implements OnInit {
   DropCart(){
     this.sellservice.DropCart();
   }
+  RemoveFromCart(gameId:string, price:number){
+    this.sellservice.RemoveFromcart(gameId,price);
+
+    if(this.sellservice.Carrito.value!=null){
+      if(!this.sellservice.Carrito.value.totalprice.isEmpty){
+        this.hayproductos = true;
+        this.monto = this.sellservice.Carrito.value.totalprice.amount;
+        this.igv = Number((0.18 * this.monto).toFixed(2));
+        this.total =  Number((this.monto + this.igv).toFixed(2));
+        //this.currency = this.sellservice.Carrito.value.totalprice.currency; aqui va el tipo de moneda
+        this.idarraylist.idarray = this.sellservice.Carrito.value.productId;
+        this.cantidadproducto = this.idarraylist.idarray.length;
+        this.apiService.VideojuegosbyId(this.idarraylist).pipe().subscribe(res => {
+          this.videojuegos = res.listaVideojuego;
+        });
+      }else{
+        this.hayproductos = false;
+        this.monto = this.sellservice.Carrito.value.totalprice.amount;
+        this.igv = Number((0.18 * this.monto).toFixed(2));
+        this.total =  Number((this.monto + this.igv).toFixed(2));
+        this.videojuegos = [];
+      }
+    
+    }
+  }
 }
