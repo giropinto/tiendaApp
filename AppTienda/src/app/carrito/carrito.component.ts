@@ -13,15 +13,19 @@ declare var culqijs: any;
 export class CarritoComponent implements OnInit {
   idarraylist:Arraylistid = new Arraylistid();
   monto: number;
+  total: number;
   currency: string;
   cantidadproducto: number;
   hayproductos: boolean = false;
+  igv: number;
   constructor(private sellservice: ProductsellService,private apiService:HttpServiceService) {
 
     if(this.sellservice.Carrito.value!=null){
       if(!this.sellservice.Carrito.value.totalprice.isEmpty){
         this.hayproductos = true;
         this.monto = this.sellservice.Carrito.value.totalprice.amount;
+        this.igv = Number((0.18 * this.monto).toFixed(2));
+        this.total =  Number((this.monto + this.igv).toFixed(2));
         //this.currency = this.sellservice.Carrito.value.totalprice.currency; aqui va el tipo de moneda
         this.idarraylist.idarray = this.sellservice.Carrito.value.productId;
         this.cantidadproducto = this.idarraylist.idarray.length;

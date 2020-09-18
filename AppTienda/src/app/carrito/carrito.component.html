@@ -22,10 +22,20 @@
     </div>
     <div class = "venta">
       <div class = "ventabox">
-        <div>
-          
+        <div class = "ventatext">
+          <div class = "header">
+            <p>Order Summary</p>
+          </div>
+          <div class = "cartdetails">
+            <p>Subtotal : ${{monto}}</p>
+            <p>IGV: ${{igv}}</p>
+          </div>
+          <div class ="totalprice">
+            <p>Total: ${{total}}</p>
+          </div>
+
         </div>
-        <div>
+        <div class = "actionbuttons">
           <button (click)="DropCart()" class = "sellbutton">DropCart</button>
           <button class = "sellbutton">Purchase All</button>
         </div>

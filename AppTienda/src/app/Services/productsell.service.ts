@@ -15,14 +15,14 @@ export class ProductsellService {
     let carrito:SellCart = new SellCart();
     if(this.Carrito.getValue()!=null){
       carrito = this.Carrito.getValue();
-      carrito.totalprice.amount = carrito.totalprice.amount + price;
+      carrito.totalprice.amount = Number((carrito.totalprice.amount + price).toFixed(2));
     }else{
       carrito.productId =[];
       carrito.totalprice = new Totalprice();
       carrito.totalprice.amount = price;
     }
     carrito.productId.push(gameId);
-    
+
     carrito.totalprice.isEmpty=false;
     this.Carrito.next(carrito);
     localStorage.setItem('a2bcar', JSON.stringify(carrito));
