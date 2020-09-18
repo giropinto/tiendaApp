@@ -9,21 +9,21 @@
       <div class="carousel-item active">
         <img src="{{gamescarrusel[0].urlimg}}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{gamescarrusel[0].titulo}}</h5>
+          <h5 [routerLink]="['/games',gamescarrusel[0].titulo]">{{gamescarrusel[0].titulo}}</h5>
           <p>{{gamescarrusel[0].precio}}</p>
         </div>
       </div>
       <div class="carousel-item">
         <img src="{{gamescarrusel[1].urlimg}}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{gamescarrusel[1].titulo}}</h5>
+          <h5 [routerLink]="['/games',gamescarrusel[1].titulo]">{{gamescarrusel[1].titulo}}</h5>
           <p>{{gamescarrusel[1].precio}}</p>
         </div>
       </div>
       <div class="carousel-item">
         <img src="{{gamescarrusel[2].urlimg}}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{gamescarrusel[2].titulo}}</h5>
+          <h5 [routerLink]="['/games',gamescarrusel[2].titulo]">{{gamescarrusel[2].titulo}}</h5>
           <p>{{gamescarrusel[2].precio}}</p>
         </div>
       </div>

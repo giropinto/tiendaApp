@@ -41,10 +41,10 @@ export class CarritoComponent implements OnInit {
   abrirpago():void{
     Culqi.publicKey = 'pk_test_1f34f9d5710278fe';
     Culqi.settings({
-      title: 'Culqi Store',
-      currency: 'PEN',
-      description: 'Polo/remera Culqi lover',
-      amount: 3500
+      title: 'A2B Store',
+      currency: 'USD',
+      description: 'A2B Selected Games',
+      amount: this.total * 100
     });
 
       Culqi.open();
@@ -87,7 +87,7 @@ export class CarritoComponent implements OnInit {
         this.total =  Number((this.monto + this.igv).toFixed(2));
         this.videojuegos = [];
       }
-    
+
     }
   }
 }

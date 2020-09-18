@@ -13,10 +13,14 @@
         <div class = "description">
           <div class = "box-name">
             <a>{{r.titulo}}</a>
-            <button (click)="RemoveFromCart(r.idvideojuego,r.precio)">Remove</button>
           </div>
           <div class = "box-price">
-            <a>${{r.precio}}</a>
+            <div class = "price">
+              <a>${{r.precio}}</a>
+            </div>
+            <div class = "remove">
+              <button (click)="RemoveFromCart(r.idvideojuego,r.precio)">Remove from cart</button>
+            </div>
           </div>
         </div>
       </div>
@@ -34,14 +38,13 @@
           <div class ="totalprice">
             <p>Total: ${{total}}</p>
           </div>
-
         </div>
         <div class = "actionbuttons">
-          <button  *ngIf="hayproductos" (click)="DropCart()" class = "sellbutton">DropCart</button>
-          <button *ngIf="hayproductos" class = "sellbutton">Purchase All</button>
+          <button  *ngIf="hayproductos" (click)="DropCart()" class = "sellbutton">Drop all</button>
+          <button *ngIf="hayproductos" (click) ="abrirpago()" class = "sellbutton">Purchase All</button>
         </div>
-        <div *ngIf="!hayproductos">
-          <p>Go add some games to ur cart</p>
+        <div *ngIf="!hayproductos" class = "noproducts">
+          <p>Go add some games to your cart!!</p>
         </div>
       </div>
     </div>

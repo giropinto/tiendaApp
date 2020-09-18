@@ -17,6 +17,7 @@
 
   <div class = "container">
     <div class = "filtercontainer">
+      <div class = "filterlist"></div>
       <div class = "filterlist">
         <p>Genre</p>
         <div class="form-check" *ngFor="let control of selectedGenres.controls; let i =index;">
@@ -26,7 +27,6 @@
           </label>
         </div>
       </div>
-      <hr class = "linea">
       <div class = "filterlist">
         <p>Language</p>
         <div class="form-check" *ngFor="let control of selectedLanguages.controls; let i =index;">
