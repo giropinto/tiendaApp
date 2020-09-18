@@ -2,6 +2,7 @@ package com.tiendavideojuegos.tiendaweb.controller;
 
 
 import com.tiendavideojuegos.tiendaweb.dto.FilterDto;
+import com.tiendavideojuegos.tiendaweb.dto.IdArrayDto;
 import com.tiendavideojuegos.tiendaweb.dto.LGDto;
 import com.tiendavideojuegos.tiendaweb.dto.ListaVideojuego;
 import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
@@ -43,4 +44,13 @@ public class VideojuegosController {
     public @ResponseBody ListaVideojuego TopGames(){
         return videojuegosService.TopGames();
     }
+
+    @RequestMapping(value = "/GetbyIds",
+            method = RequestMethod.POST,
+            produces = "application/json;charset=utf-8")
+    public @ResponseBody ListaVideojuego FindbyIds(@RequestBody IdArrayDto idArrayDto) {
+        return videojuegosService.FindbyIds(idArrayDto);
+    }
+
+    
 }

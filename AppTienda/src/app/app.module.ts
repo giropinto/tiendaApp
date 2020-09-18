@@ -6,7 +6,6 @@ import { FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProductoComponent } from './producto/producto.component';
-import { AtencionComponent } from './atencion/atencion.component';
 import { HttpServiceService } from './Services/http-service.service';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -24,7 +23,6 @@ import { CarritoComponent } from './carrito/carrito.component';
     AppComponent,
     HomeComponent,
     ProductoComponent,
-    AtencionComponent,
     NavbarComponent,
     AboutComponent,
     PageNotFoundComponent,

@@ -33,9 +33,8 @@ export class ProductoComponent implements OnInit {
     )
       .subscribe(data=>{
         {
-          console.log(data);
+          console.log(this.filtercontent);
           this.videojuegos=data.listaVideojuego;
-          console.log(data);
         }
       });
   }
@@ -83,7 +82,8 @@ export class ProductoComponent implements OnInit {
         this.filtercontent.genre.push(this.generolist[i]);
       }
     });
-    console.log(this.filtercontent.genre)
+    console.log(this.filtercontent.genre);
+    console.log(this.filtercontent);
     this.httpService.VideojuegogetFilter(this.filtercontent)
     .subscribe(data=>{
       this.videojuegos=data.listaVideojuego;

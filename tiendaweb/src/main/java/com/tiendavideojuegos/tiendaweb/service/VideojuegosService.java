@@ -2,6 +2,7 @@ package com.tiendavideojuegos.tiendaweb.service;
 
 import com.tiendavideojuegos.tiendaweb.dao.VideojuegoDao;
 import com.tiendavideojuegos.tiendaweb.dto.FilterDto;
+import com.tiendavideojuegos.tiendaweb.dto.IdArrayDto;
 import com.tiendavideojuegos.tiendaweb.dto.LGDto;
 import com.tiendavideojuegos.tiendaweb.dto.ListaVideojuego;
 import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
@@ -28,6 +29,11 @@ public class VideojuegosService {
     public ListaVideojuego TopGames(){
         ListaVideojuego listaVideojuego = new ListaVideojuego();
         listaVideojuego.setListaVideojuego(videojuegoDao.TopGames());
+        return listaVideojuego;
+    }
+    public ListaVideojuego FindbyIds(IdArrayDto idArrayDto){
+        ListaVideojuego listaVideojuego = new ListaVideojuego();
+        listaVideojuego.setListaVideojuego(videojuegoDao.FindbyIds(idArrayDto));
         return listaVideojuego;
     }
     

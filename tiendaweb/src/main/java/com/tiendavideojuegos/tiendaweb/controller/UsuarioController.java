@@ -28,6 +28,9 @@ public class UsuarioController {
     public ResponsePayloadRegister registrarUsuario(@RequestBody UsuarioRequest usuarioRequest){
         return usuarioService.registrarUsuario(usuarioRequest);
     }
+
+
+
     @RequestMapping(value= "/charges", method = RequestMethod.POST, produces = "application/json")
     public Map<String, Object> charges(@RequestParam("token") String token, @RequestParam("installments") int installments) throws Exception {
 

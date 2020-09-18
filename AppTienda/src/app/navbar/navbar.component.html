@@ -1,13 +1,7 @@
 <div class="ownnavbar">
   <a class="position" routerLink="/home">HOME</a>
   <a class="position" routerLink="/about">ABOUT US</a>
-  <div class="owndropdown position">
-    <button class="owndropbtn" routerLink="/producto/">GAMES
-      <i class="fa fa-caret-down"></i>
-    </button>
-  </div>
-  <button (click)="DropCart()" >DropCart</button>
-  <button id="buyButton" (click)="abrirpago()">Comprar</button>
+  <a class="position" routerLink="/producto">GAMES</a>
   <img style="float: right;" class="ownlogo" src="assets/a2b.png">
   <div *ngIf="!isAuthenticated" class="position" style = "float: right">
     <a href="#myModal" class="trigger-btn" data-toggle="modal">LOGIN</a>
@@ -15,7 +9,7 @@
   <div *ngIf="isAuthenticated">
     <a style="cursor: pointer; float: right;" class="position" (click)="onLogout()">Logout</a>
   </div>
-
+  <a style="float: right;" class="position" routerLink="/carrito">CARRITO</a>
 </div>
 <div id="myModal" class="modal fade">
   <div class="modal-dialog modal-login">

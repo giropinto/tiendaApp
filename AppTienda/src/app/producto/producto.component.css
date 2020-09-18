@@ -18,7 +18,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cd139c', endColorstr='#f051c6', GradientType=1 );
 }
 .example-form {
-  max-width: 60%;
+  max-width: 80%;
   width: 100%;
 }
 .example-full-width {
@@ -84,8 +84,8 @@
 }
 .game-box{
   margin: 1.5vh 1.5vw 1.5vh 1.5vw;
-  height: 40vh;
-  width: 20%;
+  height:240px;
+  width: 200px;
   background-color: #f9f9f9;
   border-radius: 0.8rem;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);

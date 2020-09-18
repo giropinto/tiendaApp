@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { FilterContent} from '../Models/Filter'
+import { Arraylistid, FilterContent} from '../Models/Filter'
 import {LGDto, Videojuego, VideojuegoLista} from '../Models/Videojuego';
 
 import { catchError, map, retry, tap } from 'rxjs/operators';
@@ -50,6 +50,13 @@ export class HttpServiceService {
   }
   VideojuegoTop(): Observable<VideojuegoLista>{
     return this.http.post<VideojuegoLista>('http://localhost:8080/GetTop', this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
+  VideojuegosbyId(data: Arraylistid): Observable<VideojuegoLista>{
+    return this.http.post<VideojuegoLista>('http://localhost:8080/GetbyIds',data, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)

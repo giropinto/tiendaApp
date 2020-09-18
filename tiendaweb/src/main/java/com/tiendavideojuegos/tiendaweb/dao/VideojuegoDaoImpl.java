@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tiendavideojuegos.tiendaweb.dto.FilterDto;
+import com.tiendavideojuegos.tiendaweb.dto.IdArrayDto;
 import com.tiendavideojuegos.tiendaweb.dto.LGDto;
 import com.tiendavideojuegos.tiendaweb.dto.VideojuegoDto;
 
@@ -54,33 +55,33 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
     public List<VideojuegoDto> FindWithFilter(FilterDto filterDto) {
 
         List<VideojuegoDto> listaVideojuego = new ArrayList<>();
-        String genreString =" ";
-        String languageString=" ";
+        String genreString = " ";
+        String languageString = " ";
         filterDto.getGenre().size();
         filterDto.getLanguage().size();
         int i;
-        if(filterDto.getGenre().size()>0){
+        if (filterDto.getGenre().size() > 0) {
             genreString = genreString + " idgenero IN (";
-            for(i=0;i<filterDto.getGenre().size()-1;i++){
-                genreString =  genreString +" "+ filterDto.getGenre().get(i)+",";
+            for (i = 0; i < filterDto.getGenre().size() - 1; i++) {
+                genreString = genreString + " " + filterDto.getGenre().get(i) + ",";
             }
-            genreString = genreString +" "+  filterDto.getGenre().get(i)+" )";
-        }else{
+            genreString = genreString + " " + filterDto.getGenre().get(i) + " )";
+        } else {
             genreString = " TRUE ";
         }
-        if(filterDto.getLanguage().size()>0){
+        if (filterDto.getLanguage().size() > 0) {
             languageString = languageString + " idlenguaje IN (";
-            for(i=0;i<filterDto.getLanguage().size()-1;i++){
-                languageString = languageString + " " +filterDto.getLanguage().get(i)+",";
+            for (i = 0; i < filterDto.getLanguage().size() - 1; i++) {
+                languageString = languageString + " " + filterDto.getLanguage().get(i) + ",";
             }
-            languageString = languageString +"  "+ filterDto.getLanguage().get(i)+" )";
-        }else{
+            languageString = languageString + "  " + filterDto.getLanguage().get(i) + " )";
+        } else {
             languageString = " TRUE ";
         }
 
         String sql = " SELECT * From videojuego Where idvideojuego IN (SELECT idvideojuego FROM relaciongv WHERE "
-                + genreString + " AND idvideojuego in (SELECT idvideojuego FROM relacionlv WHERE "
-                + languageString+ " ));";
+                + genreString + " AND idvideojuego in (SELECT idvideojuego FROM relacionlv WHERE " + languageString
+                + " ));";
 
         try {
             Connection connection = jdbcTemplate.getDataSource().getConnection();
@@ -111,7 +112,7 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
         VideojuegoDto videojuego1 = new VideojuegoDto();
         String sql = "SELECT idvideojuego, titulo, precio, fecha_lanzamiento, desarrolladora, urlimg FROM videojuego WHERE titulo = ? ";
         String sql2 = "UPDATE videojuego SET visitas = visitas+1  WHERE titulo = ?";
-        
+
         try {
             Connection cn = jdbcTemplate.getDataSource().getConnection();
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -129,7 +130,7 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
             Connection cn2 = jdbcTemplate.getDataSource().getConnection();
             PreparedStatement ps2 = cn2.prepareStatement(sql2);
             ps2.setString(1, videojuegoDto.getTitulo());
-            ps2.executeUpdate();    
+            ps2.executeUpdate();
             cn2.close();
             cn.close();
         } catch (SQLException e) {
@@ -140,19 +141,19 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
 
     @Override
     public LGDto GetLG(VideojuegoDto videojuegoDto) {
-       
+
         LGDto lgDto = new LGDto();
-        List<String> genero= new ArrayList<>();
-        List<String> lenguaje= new ArrayList<>();
+        List<String> genero = new ArrayList<>();
+        List<String> lenguaje = new ArrayList<>();
         String sql1 = "SELECT nombre FROM generos WHERE idgenero IN (SELECT idgenero FROM relaciongv WHERE idvideojuego = ?);";
         String sql2 = "SELECT nombre FROM lenguajes WHERE idlenguaje IN (SELECT idlenguaje FROM relacionlv WHERE idvideojuego = ?)";
-       
+
         try {
             Connection cn1 = jdbcTemplate.getDataSource().getConnection();
             PreparedStatement ps1 = cn1.prepareStatement(sql1);
             ps1.setString(1, videojuegoDto.getIdvideojuego());
             ResultSet rs1 = ps1.executeQuery();
-          
+
             while (rs1.next()) {
                 genero.add(rs1.getString("nombre"));
             }
@@ -172,6 +173,48 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
             e.printStackTrace();
         }
         return lgDto;
+    }
+
+    @Override
+    public List<VideojuegoDto> FindbyIds(IdArrayDto idArrayDto) {
+       
+        List<VideojuegoDto> listaVideojuego = new ArrayList<>();
+        String idArrayString = " ";
+        idArrayDto.getIdarray().size();
+        int i;
+        if (idArrayDto.getIdarray().size() > 0) {
+            idArrayString = idArrayString + " idvideojuego IN (";
+            for (i = 0; i < idArrayDto.getIdarray().size() - 1; i++) {
+                idArrayString = idArrayString + " " + idArrayDto.getIdarray().get(i) + ",";
+            }
+            idArrayString = idArrayString + " " + idArrayDto.getIdarray().get(i) + " )";
+        } else {
+            idArrayString = " TRUE ";
+        }
+        String sql = "SELECT * from videojuego WHERE "+ idArrayString; 
+
+    
+        try {
+            Connection connection = jdbcTemplate.getDataSource().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                VideojuegoDto videojuegoDto = new VideojuegoDto();
+                videojuegoDto.setDesarrolladora(resultSet.getString("desarrolladora"));
+                videojuegoDto.setFecha_lanzamiento(resultSet.getString("fecha_lanzamiento"));
+                videojuegoDto.setIdvideojuego(resultSet.getString("idvideojuego"));
+                videojuegoDto.setPrecio(resultSet.getDouble("precio"));
+                videojuegoDto.setTitulo(resultSet.getString("titulo"));
+                videojuegoDto.setUrlimg(resultSet.getString("urlimg"));
+                listaVideojuego.add(videojuegoDto);
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaVideojuego;
     }
 
 }

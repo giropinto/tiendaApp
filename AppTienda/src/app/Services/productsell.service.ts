@@ -1,4 +1,3 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -11,7 +10,6 @@ export class ProductsellService {
 
   constructor(private router:Router) { }
   Carrito = new BehaviorSubject<SellCart>(null);
-  
   Addtocart(price: number,gameId: string
   ) {
     let carrito:SellCart = new SellCart();

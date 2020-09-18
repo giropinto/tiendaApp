@@ -1,5 +1,5 @@
 export class SellCart{
-    productId?: String[];
+    productId?: string[];
     totalprice?: Totalprice;
     constructor(){
     }
