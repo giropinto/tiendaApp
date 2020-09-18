@@ -19,12 +19,12 @@ export class ProductsellService {
       carrito = this.Carrito.getValue();
       carrito.totalprice.amount = Number((carrito.totalprice.amount + price).toFixed(2));
     }else{
-      const expirationDate = new Date(new Date().getTime() + this.expiresIn * 500);
+      const expirationDate = new Date(new Date().getTime() + this.expiresIn * 1000);
       carrito.productId =[];
       carrito.totalprice = new Totalprice();
       carrito.totalprice.amount = price;
       carrito.totalprice.expirationTime = expirationDate ;
-      this.CartSesionEnded(this.expiresIn*500)
+      this.CartSesionEnded(this.expiresIn*1000)
     }
     carrito.productId.push(gameId);
 
@@ -78,6 +78,7 @@ export class ProductsellService {
     this.expirationTimer = setTimeout(() => {
       this.DropCart();
     }, expirationDuration);
+    alert("Sesion de compra caduca")
   }
 
 }
