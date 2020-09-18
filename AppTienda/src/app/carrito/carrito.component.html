@@ -13,6 +13,7 @@
         <div class = "description">
           <div class = "box-name">
             <a>{{r.titulo}}</a>
+            <button (click)="RemoveFromCart(r.idvideojuego,r.precio)">Remove</button>
           </div>
           <div class = "box-price">
             <a>${{r.precio}}</a>
@@ -36,8 +37,11 @@
 
         </div>
         <div class = "actionbuttons">
-          <button (click)="DropCart()" class = "sellbutton">DropCart</button>
-          <button class = "sellbutton">Purchase All</button>
+          <button  *ngIf="hayproductos" (click)="DropCart()" class = "sellbutton">DropCart</button>
+          <button *ngIf="hayproductos" class = "sellbutton">Purchase All</button>
+        </div>
+        <div *ngIf="!hayproductos">
+          <p>Go add some games to ur cart</p>
         </div>
       </div>
     </div>

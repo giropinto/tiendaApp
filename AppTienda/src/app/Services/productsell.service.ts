@@ -71,6 +71,7 @@ export class ProductsellService {
     this.router.navigateByUrl("/producto");
     if (this.expirationTimer) {
       clearTimeout(this.expirationTimer);
+      alert("Sesion de compra caduca"); 
     }
     this.expirationTimer = null;
   }
@@ -78,7 +79,6 @@ export class ProductsellService {
     this.expirationTimer = setTimeout(() => {
       this.DropCart();
     }, expirationDuration);
-    alert("Sesion de compra caduca")
   }
 
 }
