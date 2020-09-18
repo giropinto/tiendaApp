@@ -3,8 +3,7 @@
   background-color: #141414;
   height: 10vh;;
   border-style: groove;
-  border-color: violet;
-
+  border: #141414;
 }
 .ownnavbar .ownlogo:hover{
   background-color: #333;
@@ -43,7 +42,7 @@
 }
 
 .ownnavbar a:hover, .owndropdown:hover .owndropbtn {
-  background-color: blueviolet;
+  background-color: #39977E;
   border-radius: 15px;
 }
 

@@ -7,15 +7,7 @@
   margin-bottom: 2vh;
   display: flex;
   border-radius: 10px;
-  box-shadow: 5px 5px 5px blueviolet;
-  background: rgba(205,19,156,1);
-  background: -moz-linear-gradient(left, rgba(205,19,156,1) 0%, rgba(205,19,156,0.74) 74%, rgba(224,52,179,0.69) 88%, rgba(240,81,198,0.69) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(205,19,156,1)), color-stop(74%, rgba(205,19,156,0.74)), color-stop(88%, rgba(224,52,179,0.69)), color-stop(100%, rgba(240,81,198,0.69)));
-  background: -webkit-linear-gradient(left, rgba(205,19,156,1) 0%, rgba(205,19,156,0.74) 74%, rgba(224,52,179,0.69) 88%, rgba(240,81,198,0.69) 100%);
-  background: -o-linear-gradient(left, rgba(205,19,156,1) 0%, rgba(205,19,156,0.74) 74%, rgba(224,52,179,0.69) 88%, rgba(240,81,198,0.69) 100%);
-  background: -ms-linear-gradient(left, rgba(205,19,156,1) 0%, rgba(205,19,156,0.74) 74%, rgba(224,52,179,0.69) 88%, rgba(240,81,198,0.69) 100%);
-  background: linear-gradient(to right, rgba(205,19,156,1) 0%, rgba(205,19,156,0.74) 74%, rgba(224,52,179,0.69) 88%, rgba(240,81,198,0.69) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cd139c', endColorstr='#f051c6', GradientType=1 );
+  background: white;
 }
 .example-form {
   max-width: 80%;
