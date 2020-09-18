@@ -12,16 +12,24 @@ declare var culqijs: any;
 })
 export class CarritoComponent implements OnInit {
   idarraylist:Arraylistid = new Arraylistid();
+  monto: number;
+  currency: string;
+  cantidadproducto: number;
+  hayproductos: boolean = false;
   constructor(private sellservice: ProductsellService,private apiService:HttpServiceService) {
-    
-    if(this.sellservice.Carrito.value!=null){
-      this.idarraylist.idarray = this.sellservice.Carrito.value.productId;
-      this.apiService.VideojuegosbyId(this.idarraylist).pipe().subscribe(res=>{
-        this.videojuegos = res.listaVideojuego;
-  
-      });
-    }
 
+    if(this.sellservice.Carrito.value!=null){
+      if(!this.sellservice.Carrito.value.totalprice.isEmpty){
+        this.hayproductos = true;
+        this.monto = this.sellservice.Carrito.value.totalprice.amount;
+        //this.currency = this.sellservice.Carrito.value.totalprice.currency; aqui va el tipo de moneda
+        this.idarraylist.idarray = this.sellservice.Carrito.value.productId;
+        this.cantidadproducto = this.idarraylist.idarray.length;
+        this.apiService.VideojuegosbyId(this.idarraylist).pipe().subscribe(res => {
+          this.videojuegos = res.listaVideojuego;
+        });
+      }
+    }
    }
   videojuegos: Videojuego[] = [];
   ngOnInit(): void {
@@ -34,10 +42,10 @@ export class CarritoComponent implements OnInit {
       description: 'Polo/remera Culqi lover',
       amount: 3500
     });
-    
-      Culqi.open(); 
-      
-  } 
+
+      Culqi.open();
+
+  }
   culqi():void {
     if (Culqi.token) { // ¡Objeto Token creado exitosamente!
         var token = Culqi.token.id;

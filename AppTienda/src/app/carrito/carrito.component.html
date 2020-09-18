@@ -1,5 +1,37 @@
-<p>carrito works!</p>
-<button (click)="DropCart()">DropCart</button>
-<div *ngFor="let r of videojuegos">
-    <p>{{r.titulo}}</p>
-</div>
+<main>
+    <div class = "carritoheader" >
+      <a>Carrito de Compras</a>
+      <a *ngIf="hayproductos">({{cantidadproducto}} productos)</a>
+      <a *ngIf="!hayproductos">(no hay productos)</a>
+    </div>
+  <div class = "content">
+    <div class = "carritocontainer" >
+      <div *ngFor="let r of videojuegos" class="game-box">
+        <div class="image-box">
+          <img class = "picture" src="{{r.urlimg}}">
+        </div>
+        <div class = "description">
+          <div class = "box-name">
+            <a>{{r.titulo}}</a>
+          </div>
+          <div class = "box-price">
+            <a>${{r.precio}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class = "venta">
+      <div class = "ventabox">
+        <div>
+          
+        </div>
+        <div>
+          <button (click)="DropCart()" class = "sellbutton">DropCart</button>
+          <button class = "sellbutton">Purchase All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
