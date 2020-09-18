@@ -10,6 +10,8 @@ export class ProductsellService {
 
   constructor(private router:Router) { }
   Carrito = new BehaviorSubject<SellCart>(null);
+  private expirationTimer :any;
+  expiresIn = 3600;
   Addtocart(price: number,gameId: string
   ) {
     let carrito:SellCart = new SellCart();
@@ -17,9 +19,12 @@ export class ProductsellService {
       carrito = this.Carrito.getValue();
       carrito.totalprice.amount = Number((carrito.totalprice.amount + price).toFixed(2));
     }else{
+      const expirationDate = new Date(new Date().getTime() + this.expiresIn * 500);
       carrito.productId =[];
       carrito.totalprice = new Totalprice();
       carrito.totalprice.amount = price;
+      carrito.totalprice.expirationTime = expirationDate ;
+      this.CartSesionEnded(this.expiresIn*500)
     }
     carrito.productId.push(gameId);
 
@@ -38,7 +43,7 @@ export class ProductsellService {
       }
     }
     carrito.productId = products;
-    carrito.totalprice.amount= carrito.totalprice.amount - price;
+    carrito.totalprice.amount= Number((carrito.totalprice.amount - price).toFixed(2));
     if(carrito.totalprice.amount==0){
       carrito.totalprice.isEmpty=true;
     }
@@ -52,13 +57,27 @@ export class ProductsellService {
         productId: [],
         totalprice: null
       }
-      return cart;
+      return ;
     }
     this.Carrito.next(cartdata);
+    const expirationDuration =
+        new Date(cartdata.totalprice.expirationTime).getTime() -
+        new Date().getTime();
+      this.CartSesionEnded(expirationDuration);
   }
   DropCart(){
     localStorage.removeItem('a2bcar');
     this.Carrito.next(null);
     this.router.navigateByUrl("/producto");
+    if (this.expirationTimer) {
+      clearTimeout(this.expirationTimer);
+    }
+    this.expirationTimer = null;
   }
+  CartSesionEnded(expirationDuration: number) {
+    this.expirationTimer = setTimeout(() => {
+      this.DropCart();
+    }, expirationDuration);
+  }
+
 }
