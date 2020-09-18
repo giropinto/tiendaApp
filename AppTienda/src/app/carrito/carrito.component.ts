@@ -44,7 +44,7 @@ export class CarritoComponent implements OnInit {
       title: 'A2B Store',
       currency: 'USD',
       description: 'A2B Selected Games',
-      amount: this.total * 100
+      amount: (this.total * 1000) / 10
     });
 
       Culqi.open();
