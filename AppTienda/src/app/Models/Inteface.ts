@@ -17,7 +17,7 @@ export interface CulqiTokenRequest{
   expiration_year: string;
   email: string;
 }
-export interface CulqiTokenResponse{
+export interface CulqiPagoRequest{
   amount: string;
   currency_code: string;
   email: string;
