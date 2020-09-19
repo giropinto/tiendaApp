@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.culqi.Culqi;
 import com.culqi.util.CurrencyCode;
+import com.tiendavideojuegos.tiendaweb.dto.CulquiPago;
 import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadLogin;
 import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadRegister;
 import com.tiendavideojuegos.tiendaweb.dto.UserDto;
@@ -35,7 +36,7 @@ public class UsuarioController {
 
 
     @RequestMapping(value= "/charges", method = RequestMethod.POST, produces = "application/json")
-    public Map<String, Object> charges(@RequestParam("token") String token) throws Exception {
+    public Map<String, Object> charges(@RequestBody CulquiPago culquiPago) throws Exception {
 
         Culqi culqi = new Culqi();
         culqi.public_key = "pk_test_1f34f9d5710278fe";
@@ -43,26 +44,16 @@ public class UsuarioController {
 
         Map<String, Object> charge = new HashMap<String, Object>();
 
-        Map<String, Object> antifraudDetails = new HashMap<String, Object>();
-        antifraudDetails.put("address", "Direccion de prueba");
-        antifraudDetails.put("address_city", "LIMA");
-        antifraudDetails.put("country_code", "PE");
-        antifraudDetails.put("first_name", "Kevin");
-        antifraudDetails.put("last_name", "Rosado");
-        antifraudDetails.put("phone_number", "977777777");
-
+        
         Map<String, Object> metadata = new HashMap<String, Object>();
         metadata.put("oder_id", "124");
 
-        charge.put("amount",1000);
-        charge.put("capture", true);
+        charge.put("amount",culquiPago.getAmount());
         charge.put("currency_code", CurrencyCode.USD);
         charge.put("description","A2B Selected Games");
-        charge.put("email","krosados@hotmail.com");
-        charge.put("installments", 0);
-        charge.put("antifraud_details", antifraudDetails);
+        charge.put("email",culquiPago.getEmail());
         charge.put("metadata", metadata);
-        charge.put("source_id", token);
+        charge.put("source_id", culquiPago.getSource_id());
 
         return culqi.charge.create(charge);
     }
