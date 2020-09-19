@@ -44,7 +44,8 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
                 videojuegoDto.setVisitas(resultSet.getInt("visitas"));
                 listaVideojuego.add(videojuegoDto);
             }
-
+            resultSet.close();
+            statement.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,7 +99,8 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
                 videojuegoDto.setUrlimg(resultSet.getString("urlimg"));
                 listaVideojuego.add(videojuegoDto);
             }
-
+            resultSet.close();
+            statement.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,11 +129,13 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
                 videojuego1.setTitulo(rs.getString("titulo"));
                 videojuego1.setUrlimg(rs.getString("urlimg"));
             }
-            Connection cn2 = jdbcTemplate.getDataSource().getConnection();
-            PreparedStatement ps2 = cn2.prepareStatement(sql2);
+            rs.close();
+            ps.close();
+            cn.close();
+            cn = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement ps2 = cn.prepareStatement(sql2);
             ps2.setString(1, videojuegoDto.getTitulo());
             ps2.executeUpdate();
-            cn2.close();
             cn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -160,6 +164,7 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
             lgDto.setGenero(genero);
             rs1.close();
             ps1.close();
+            cn1.close();
             cn1 = jdbcTemplate.getDataSource().getConnection();
             PreparedStatement ps2 = cn1.prepareStatement(sql2);
             ps2.setString(1, videojuegoDto.getIdvideojuego());
