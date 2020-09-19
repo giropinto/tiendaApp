@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from '../Models/UserModel';
+import { environment } from 'src/environments/environment';
 
 export interface AuthResponseData {
   kind: string;
@@ -22,12 +23,12 @@ export class AuthServiceService {
   
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
-
+  baseUrl = environment.baseUrl;
   constructor( private http: HttpClient, private router: Router) { }
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'http://localhost:8080/register',
+        this.baseUrl+'/register',
         {
           email: email,
           password: password,
@@ -50,7 +51,7 @@ export class AuthServiceService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'http://localhost:8080/loginuser',
+        this.baseUrl+'/loginuser',
         {
           email: email,
           password: password,
@@ -148,7 +149,7 @@ export class AuthServiceService {
   forgetpassword(email: string) {
     return this.http
       .post<String>(
-        'http://localhost:8080/forgetPassword',
+        this.baseUrl+'/forgetPassword',
         {
           email: email,
         }

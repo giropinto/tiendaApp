@@ -6,11 +6,13 @@ import {LGDto, Videojuego, VideojuegoLista} from '../Models/Videojuego';
 
 import { catchError, map, retry, tap } from 'rxjs/operators';
 import {CulqiPagoRequest } from '../Models/Inteface';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class HttpServiceService {
-
+  
+  baseUrl = environment.baseUrl;
 
   constructor(private http:HttpClient) { }
   httpOptions = {
@@ -29,42 +31,42 @@ export class HttpServiceService {
     return throwError(errorMessage);
   }
   VideojuegogetFilter(data: FilterContent): Observable<VideojuegoLista>{
-    return this.http.post<VideojuegoLista>('http://localhost:8080/Allgames', data, this.httpOptions)
+    return this.http.post<VideojuegoLista>(this.baseUrl+'/Allgames', data, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)
       );
   }
   VideojuegogetByName(data: Videojuego): Observable<Videojuego>{
-    return this.http.post<Videojuego>('http://localhost:8080/GamesByName', data, this.httpOptions)
+    return this.http.post<Videojuego>(this.baseUrl+'/GamesByName', data, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)
       );
   }
   VideojuegoData(data: Videojuego): Observable<LGDto>{
-    return this.http.post<LGDto>('http://localhost:8080/GetLG', data, this.httpOptions)
+    return this.http.post<LGDto>(this.baseUrl+'/GetLG', data, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)
       );
   }
   VideojuegoTop(): Observable<VideojuegoLista>{
-    return this.http.post<VideojuegoLista>('http://localhost:8080/GetTop', this.httpOptions)
+    return this.http.post<VideojuegoLista>(this.baseUrl+'/GetTop', this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)
       );
   }
   VideojuegosbyId(data: Arraylistid): Observable<VideojuegoLista>{
-    return this.http.post<VideojuegoLista>('http://localhost:8080/GetbyIds',data, this.httpOptions)
+    return this.http.post<VideojuegoLista>(this.baseUrl+'/GetbyIds',data, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)
       );
   }
   CompraCulqi(data: CulqiPagoRequest): Observable<any>{
-    return this.http.post<any>('http://localhost:8080/charges', data, this.httpOptions)
+    return this.http.post<any>(this.baseUrl+'/charges', data, this.httpOptions)
       .pipe(
         catchError(this.errorHandl)
       );

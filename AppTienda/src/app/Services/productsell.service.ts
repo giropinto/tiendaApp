@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { SellCart, Totalprice } from '../Models/Cart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsellService {
-
+  
+  baseUrl = environment.baseUrl;
   constructor(private router:Router) { }
   Carrito = new BehaviorSubject<SellCart>(null);
   private expirationTimer :any;
