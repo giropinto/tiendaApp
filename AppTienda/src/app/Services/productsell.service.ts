@@ -19,12 +19,12 @@ export class ProductsellService {
       carrito = this.Carrito.getValue();
       carrito.totalprice.amount = Number((carrito.totalprice.amount + price).toFixed(2));
     }else{
-      const expirationDate = new Date(new Date().getTime() + this.expiresIn * 1000);
+      const expirationDate = new Date(new Date().getTime() + this.expiresIn * 100);
       carrito.productId =[];
       carrito.totalprice = new Totalprice();
       carrito.totalprice.amount = price;
       carrito.totalprice.expirationTime = expirationDate ;
-      this.CartSesionEnded(this.expiresIn*1000)
+      this.CartSesionEnded(this.expiresIn * 100)
     }
     carrito.productId.push(gameId);
 
@@ -71,7 +71,7 @@ export class ProductsellService {
     this.router.navigateByUrl("/producto");
     if (this.expirationTimer) {
       clearTimeout(this.expirationTimer);
-      alert("Sesion de compra caduca"); 
+      alert("Sesion de compra caduca");
     }
     this.expirationTimer = null;
   }

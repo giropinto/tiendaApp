@@ -5,6 +5,7 @@ import { Arraylistid, FilterContent} from '../Models/Filter'
 import {LGDto, Videojuego, VideojuegoLista} from '../Models/Videojuego';
 
 import { catchError, map, retry, tap } from 'rxjs/operators';
+import {CulqiTokenRequest, CulqiTokenResponse} from '../Models/Inteface';
 @Injectable({
   providedIn: 'root'
 })
@@ -62,5 +63,11 @@ export class HttpServiceService {
         catchError(this.errorHandl)
       );
   }
- 
+  CompraCulqi(data: CulqiTokenRequest): Observable<CulqiTokenResponse>{
+    return this.http.post<CulqiTokenResponse>('http://localhost:8080/charges', data, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
 }

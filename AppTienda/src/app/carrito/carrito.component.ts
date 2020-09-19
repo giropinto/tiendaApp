@@ -3,6 +3,7 @@ import { Arraylistid } from '../Models/Filter';
 import { Videojuego } from '../Models/Videojuego';
 import { HttpServiceService } from '../Services/http-service.service';
 import { ProductsellService } from '../Services/productsell.service';
+import {CulqiTokenResponse} from '../Models/Inteface';
 declare var Culqi: any;
 declare var culqijs: any;
 @Component({
@@ -18,6 +19,7 @@ export class CarritoComponent implements OnInit {
   cantidadproducto: number;
   hayproductos: boolean = false;
   igv: number;
+  email: string;
   constructor(private sellservice: ProductsellService,private apiService:HttpServiceService) {
 
     if(this.sellservice.Carrito.value!=null){
@@ -88,6 +90,19 @@ export class CarritoComponent implements OnInit {
         this.videojuegos = [];
       }
 
+    }
+  }
+  pagar(): void{
+    if(Culqi.token) {
+      var token = Culqi.token.id;
+      let vprecio: number = this.total * 100;
+      let monto: string = vprecio.toString();
+      let pago: CulqiTokenResponse = {
+        amount: monto,
+        currency_code: 'USD',
+        email: '',
+        source_id: token
+      }
     }
   }
 }
