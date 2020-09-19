@@ -35,7 +35,7 @@ public class UsuarioController {
 
 
     @RequestMapping(value= "/charges", method = RequestMethod.POST, produces = "application/json")
-    public Map<String, Object> charges(@RequestParam("token") String token, @RequestParam("installments") int installments) throws Exception {
+    public Map<String, Object> charges(@RequestParam("token") String token) throws Exception {
 
         Culqi culqi = new Culqi();
         culqi.public_key = "pk_test_1f34f9d5710278fe";
@@ -56,10 +56,10 @@ public class UsuarioController {
 
         charge.put("amount",1000);
         charge.put("capture", true);
-        charge.put("currency_code", CurrencyCode.PEN);
-        charge.put("description","Venta de prueba");
-        charge.put("email","krosados@gmail.com");
-        charge.put("installments", installments);
+        charge.put("currency_code", CurrencyCode.USD);
+        charge.put("description","A2B Selected Games");
+        charge.put("email","krosados@hotmail.com");
+        charge.put("installments", 0);
         charge.put("antifraud_details", antifraudDetails);
         charge.put("metadata", metadata);
         charge.put("source_id", token);
