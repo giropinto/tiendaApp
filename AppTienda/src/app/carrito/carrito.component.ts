@@ -22,7 +22,6 @@ export class CarritoComponent implements OnInit {
   igv: number;
   email: string;
   constructor(private sellservice: ProductsellService,private apiService:HttpServiceService,private auth:AuthServiceService) {
-
     if(this.sellservice.Carrito.value!=null){
       if(!this.sellservice.Carrito.value.totalprice.isEmpty){
         this.hayproductos = true;
@@ -40,6 +39,7 @@ export class CarritoComponent implements OnInit {
    }
   videojuegos: Videojuego[] = [];
   ngOnInit(): void {
+    this.email = this.auth.user.value.email;
   }
   abrirpago():void{
     Culqi.publicKey = 'pk_test_1f34f9d5710278fe';
@@ -105,6 +105,7 @@ export class CarritoComponent implements OnInit {
         email: email,
         source_id: token
       }
+      console.log(token);
     }
   }
 }
