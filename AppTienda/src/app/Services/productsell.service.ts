@@ -11,7 +11,7 @@ export class ProductsellService {
   constructor(private router:Router) { }
   Carrito = new BehaviorSubject<SellCart>(null);
   private expirationTimer :any;
-  expiresIn = 3600;
+  expiresIn = 1800;
   Addtocart(price: number,gameId: string
   ) {
     let carrito:SellCart = new SellCart();
