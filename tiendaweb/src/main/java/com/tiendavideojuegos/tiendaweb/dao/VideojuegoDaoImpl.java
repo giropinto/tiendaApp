@@ -158,16 +158,18 @@ public class VideojuegoDaoImpl implements VideojuegoDao {
                 genero.add(rs1.getString("nombre"));
             }
             lgDto.setGenero(genero);
-            cn1.close();
-            Connection cn2 = jdbcTemplate.getDataSource().getConnection();
-            PreparedStatement ps2 = cn2.prepareStatement(sql2);
+            rs1.close();
+            ps1.close();
+            cn1 = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement ps2 = cn1.prepareStatement(sql2);
             ps2.setString(1, videojuegoDto.getIdvideojuego());
             ResultSet rs2 = ps2.executeQuery();
             while (rs2.next()) {
                 lenguaje.add(rs2.getString("nombre"));
             }
             lgDto.setLenguaje(lenguaje);
-            cn2.close();
+            rs2.close();
+            ps2.close();
             cn1.close();
         } catch (SQLException e) {
             e.printStackTrace();

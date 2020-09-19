@@ -3,8 +3,8 @@ import { Arraylistid } from '../Models/Filter';
 import { Videojuego } from '../Models/Videojuego';
 import { HttpServiceService } from '../Services/http-service.service';
 import { ProductsellService } from '../Services/productsell.service';
-import {CulqiTokenResponse} from '../Models/Inteface';
-import {AuthServiceService} from '../Services/auth-service.service';
+import {CulqiPagoRequest } from '../Models/Inteface';
+import { AuthServiceService } from '../Services/auth-service.service';
 declare var Culqi: any;
 declare var culqijs: any;
 @Component({
@@ -21,8 +21,7 @@ export class CarritoComponent implements OnInit {
   hayproductos: boolean = false;
   igv: number;
   email: string;
-  constructor(private sellservice: ProductsellService,private apiService:HttpServiceService, private authservice : AuthServiceService) {
-
+  constructor(private sellservice: ProductsellService,private apiService:HttpServiceService,private auth:AuthServiceService) {
     if(this.sellservice.Carrito.value!=null){
       if(!this.sellservice.Carrito.value.totalprice.isEmpty){
         this.hayproductos = true;
@@ -40,7 +39,7 @@ export class CarritoComponent implements OnInit {
    }
   videojuegos: Videojuego[] = [];
   ngOnInit(): void {
-    this.email = this.authservice.user.value.email;
+    this.email = this.auth.user.value.email;
   }
   abrirpago():void{
     Culqi.publicKey = 'pk_test_1f34f9d5710278fe';
@@ -97,12 +96,13 @@ export class CarritoComponent implements OnInit {
   pagar(): void{
     if(Culqi.token) {
       var token = Culqi.token.id;
+      let email = this.auth.user.value.email;
       let vprecio: number = this.total * 100;
       let monto: string = vprecio.toString();
-      let pago: CulqiTokenResponse = {
+      let pago: CulqiPagoRequest = {
         amount: monto,
         currency_code: 'USD',
-        email: this.email,
+        email: email,
         source_id: token
       }
       console.log(token);
