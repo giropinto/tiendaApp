@@ -7,9 +7,12 @@ import com.culqi.Culqi;
 import com.culqi.util.CurrencyCode;
 import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadLogin;
 import com.tiendavideojuegos.tiendaweb.dto.ResponsePayloadRegister;
+import com.tiendavideojuegos.tiendaweb.dto.UserDto;
 import com.tiendavideojuegos.tiendaweb.dto.UsuarioRequest;
+import com.tiendavideojuegos.tiendaweb.service.MailService;
 import com.tiendavideojuegos.tiendaweb.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,4 +66,20 @@ public class UsuarioController {
 
         return culqi.charge.create(charge);
     }
+
+        @Autowired
+        private MailService notificationService;
+
+    
+        @RequestMapping(value = "/forgetPassword", method = RequestMethod.POST, consumes = "application/json;charset=utf-8")
+        public String send(@RequestBody UsuarioRequest user){
+            
+
+            try {
+                notificationService.sendEmail(user);
+            } catch (MailException mailException) {
+                System.out.println(mailException);
+            }
+            return "Email Send";
+        }
 }

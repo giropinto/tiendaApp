@@ -14,15 +14,19 @@
 <div id="myModal" class="modal fade">
   <div class="modal-dialog modal-login">
     <div class="modal-content">
-      <div class="modal-header">
+      <div *ngIf="!forgotpass" class="modal-header">
         <h4 *ngIf="isLoginMode" class="modal-title">Sign In</h4>
         <h4 *ngIf="!isLoginMode" class="modal-title">Sign Up</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div *ngIf="forgotpass" class="modal-header">
+        <h4 class="modal-title">Forgot Password</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       </div>
       <div class="alert alert-danger" *ngIf="error">
         <p>{{ error }}</p>
       </div>
-      <div class="modal-body">
+      <div *ngIf="!forgotpass" class="modal-body">
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" method="post">
           <div class="form-group">
             <div class="input-group">
@@ -39,10 +43,24 @@
           <div class="form-group">
             <button [disabled]="!authForm.valid" type="submit" class="btn btn-primary btn-block btn-lg">{{LoginMode}}</button>
           </div>
-          <p *ngIf="isLoginMode" class="hint-text"><a>Forgot Password?</a></p>
+          <p *ngIf="isLoginMode" (click)="Onforgot()" class="hint-text"><a>Forgot Password?</a></p>
         </form>
       </div>
-      <div class="modal-footer ">{{LoginStringMode}}
+      <div *ngIf="forgotpass" class="modal-body">
+        <form #forgetForm="ngForm" (ngSubmit)="ForgotPassword(forgetForm)" method="post">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input id="email" type="email" class="form-control" name="email" placeholder="Username" required="required" email ngModel>
+            </div>
+          </div>
+          <div class="form-group">
+            <button [disabled]="!forgetForm.valid" type="submit" class="btn btn-primary btn-block btn-lg">Send</button>
+          </div>
+          <p (click)="Onforgot()" class="hint-text"><a>Return</a></p>
+        </form> 
+      </div>
+      <div *ngIf="!forgotpass" class="modal-footer ">{{LoginStringMode}}
         <a *ngIf="!isLoginMode"(click)="SwitchMode()" >Sign In</a>
         <a *ngIf="isLoginMode" (click)="SwitchMode()">Sign Up</a>
       </div>

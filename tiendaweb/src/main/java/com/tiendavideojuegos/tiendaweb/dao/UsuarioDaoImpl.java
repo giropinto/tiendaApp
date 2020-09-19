@@ -80,4 +80,29 @@ public class UsuarioDaoImpl {
         }
         return responsePayloadRegister;
     }
+
+
+    public UsuarioRequest ForgetPassword(UsuarioRequest usuarioRequest) {
+        String sql = "SELECT email, contrasenia from usuario where email = ? ";
+        UsuarioRequest usuarioRequest2= new UsuarioRequest();
+        try{
+            Connection cn = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement sentencia = cn.prepareStatement(sql);
+            sentencia.setString(1, usuarioRequest.getEmail());
+            ResultSet resultado = sentencia.executeQuery();
+            int i = 0;
+            while (resultado.next()){
+                usuarioRequest2.setEmail(resultado.getString("email"));
+                usuarioRequest2.setPassword(resultado.getString("contrasenia"));
+                i = 1;
+            }
+            cn.close();
+            if(i==0){
+                throw new SQLException("");
+            }
+        }catch (SQLException throwables){
+            throw new ApiRequestException("NOT_FOUND");
+        }
+        return usuarioRequest2;
+    }
 }

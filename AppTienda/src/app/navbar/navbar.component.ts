@@ -16,7 +16,7 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
   constructor(private authService: AuthServiceService, private route: Router,private sellservice:ProductsellService) {
-   
+  
   }
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe(user => {
@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     });
    
   }
-  
+  forgotpass:boolean = false;
   LoginMode = "Sign In";
   isAuthenticated = false;
   isLoginMode = true;
@@ -35,6 +35,34 @@ export class NavbarComponent implements OnInit {
     this.isLoginMode= !this.isLoginMode;
     this.LoginStringMode = this.isLoginMode? "Don't have an account?":" Already have an account?";
     this.LoginMode = this.isLoginMode? "Sign In":" Sign Up";
+  }
+  Onforgot(){
+    this.forgotpass = !this.forgotpass;
+  }
+  ForgotPassword(form:NgForm){
+    if(!form.valid){
+      return;
+    }
+    const email = form.value.email;
+    this.authService.forgetpassword(email).subscribe(
+      resData => {
+        console.log(resData);
+        $(document).ready(function(){
+          $("#myModal").modal("hide");
+        });
+      },
+      errorMessage =>{
+        this.error = errorMessage;
+        if(this.error=="An unknown error occurred!"){
+          this.error ="Sending Email.";
+        }
+      }
+    );
+    form.reset();
+    setTimeout(()=>{
+      this.error=null;
+      $("#myModal").modal("hide");
+    },5000);
   }
   onLogout(){
     this.isLoginMode = true;

@@ -138,7 +138,25 @@ export class AuthServiceService {
       case 'EMAIL_NOT_FOUND':
         errorMessage = 'Wrong email or password.';
         break;
+      case 'NOT_FOUND':
+        errorMessage = "No such an email.";
+        break;
     }
     return throwError(errorMessage);
+  }
+
+  forgetpassword(email: string) {
+    return this.http
+      .post<String>(
+        'http://localhost:8080/forgetPassword',
+        {
+          email: email,
+        }
+      )
+      .pipe(
+        catchError(this.handleError),
+        tap(resData => {
+        })
+      ); 
   }
 }
