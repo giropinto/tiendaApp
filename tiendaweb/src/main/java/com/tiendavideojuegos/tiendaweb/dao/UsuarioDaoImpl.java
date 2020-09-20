@@ -59,10 +59,11 @@ public class UsuarioDaoImpl {
             ResultSet rs = ps.executeQuery();
             
             rs.close();
+            ps.close();
             cn.close();
             
-            Connection cn2 = jdbcTemplate.getDataSource().getConnection();
-            PreparedStatement ps2 = cn2.prepareStatement(sql2);
+            cn = jdbcTemplate.getDataSource().getConnection();
+            PreparedStatement ps2 = cn.prepareStatement(sql2);
             ps2.setString(2, usuarioRequest.getPassword());
             ps2.setString(1, usuarioRequest.getEmail());
             ResultSet rs2 = ps2.executeQuery();
@@ -74,6 +75,9 @@ public class UsuarioDaoImpl {
             responsePayloadRegister.setLocalId(rs2.getString("userid"));
             responsePayloadRegister.setExpiresIn("36000");
             }
+            rs2.close();
+            ps2.close();
+            cn.close();
             
         }catch (SQLException throwables){
             throw new ApiRequestException("EMAIL_EXISTS");
